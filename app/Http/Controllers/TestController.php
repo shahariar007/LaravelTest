@@ -47,7 +47,7 @@ class TestController extends Controller
         $login->user_email = $email;
         $login->password = Hash::make($pass);
         $login->save();
-        return "hello controller";
+        return "Registration successfully";
     }
 
     /**

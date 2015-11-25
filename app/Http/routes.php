@@ -21,13 +21,12 @@ Route::get('registration', function () {
 Route::get('about', function () {
     return View::make('about');
 });
+Route::get('logout',"loginController@logout");
 
 Route::get('work',array('as'=>'work',function () {
     return View::make('work');
 }));
-Route::get('login', function () {
-    return View::make('login');
-});
+Route::get('login', 'loginController@showLoginView');
 Route::post('store','TestController@store' );
 Route::post('/login_handle','loginController@login');
 

@@ -27,7 +27,7 @@
                     <li><a href="http://localhost/test-laravel-5-project/public/about">About</a></li>
                     <li><a href="">Item</a></li>
 
-                    <li><a href="http://localhost/test-laravel-5-project/public/registration">Registration</a> </li>
+                    <li><a href="{{action('loginController@logout')}}">Logout</a> </li>
                 </ul>
             </div>
             <!--/.nav-collapse -->
@@ -38,26 +38,7 @@
 
 <div style="text-align:center;min-height:800px;max-width:1500px;padding-top:100px">
 
-    <form action="{{action('loginController@login')}}" method="post">
-        {{csrf_field()}}
-        <table align="center" >
-            <tr align="center"> LOGIN </tr>
-            <tr >
-                <td style="padding-bottom:10px" >Email:</td>
-                <td style="padding-bottom:10px"><input name="user_email" type="text" /></td>
-            </tr>
-            <tr >
-                <td>Password:</td>
-                <td><input name="user_password" type="password" /></td>
-            </tr>
-            <tr>
-                <td></td>
-                <td style="padding-top:5px"><input name="Submit" value="Login" type="submit" /></td>
-            </tr>
-
-        </table>
-
-    </form>
+    <h1>Successfully Login</h1>
 </div>
 <footer>
     <p style="text-align:center"> copyright</p>>
