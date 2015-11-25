@@ -24,7 +24,6 @@
             <div id="navbar" class="collapse navbar-collapse">
                 <ul class="nav navbar-nav">
                     <li><a href="http://localhost/test-laravel-5-project/public/work">Home</a></li>
-                    <li><a href="http://localhost/test-laravel-5-project/public/about">About</a></li>
                     <li><a href="">Item</a></li>
 
                     <li><a href="{{action('loginController@logout')}}">Logout</a> </li>
