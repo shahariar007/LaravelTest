@@ -9,6 +9,7 @@ use App\Http\Requests;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Input;
+use Illuminate\Support\Facades\Redirect;
 
 class TestController extends Controller
 {
@@ -47,7 +48,7 @@ class TestController extends Controller
         $login->user_email = $email;
         $login->password = Hash::make($pass);
         $login->save();
-        return "Registration successfully";
+        return Redirect::to('/login');
     }
 
     /**
