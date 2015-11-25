@@ -15,16 +15,17 @@ class loginController extends Controller
 {
    function login(){
        $email=Input::get('user_email');
-       $pass = Input::get('user_pass');
+       $pass = Input::get('user_password');
        $cred = array(
            'user_email'=>$email,
-           'user_password'=>$pass
+           'password'=>$pass
        );
        if(Auth::attempt($cred)){
-           return Redirect::to('/registration');
+           return Redirect::to('/about');
        }
        else{
-           return Redirect::to('/');
+
+           return Redirect::to('/login');
        }
    }
 }

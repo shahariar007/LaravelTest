@@ -13,6 +13,10 @@
 
 Route::get('/', function () {
     return View::make('Home');
+
+});
+Route::get('registration', function () {
+    return View::make('registration');
 });
 Route::get('about', function () {
     return View::make('about');
@@ -24,10 +28,8 @@ Route::get('work',array('as'=>'work',function () {
 Route::get('login', function () {
     return View::make('login');
 });
-Route::any('registration', function () {
-    return View::make('registration');
-});
-Route::any('auth/login','loginController@login');
+Route::post('store','TestController@store' );
+Route::post('/login_handle','loginController@login');
 
 
 

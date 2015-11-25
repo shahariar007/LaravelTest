@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Input;
 
 class TestController extends Controller
@@ -40,11 +41,11 @@ class TestController extends Controller
     public function store(Request $request)
     {
         //
-        $email = Input::get('usermail');
-        $pass = $request->input('password');
+        $email = Input::get('user_email');
+        $pass = $request->input('user_password');
         $login = new TestModel();
         $login->user_email = $email;
-        $login->user_password = $pass;
+        $login->password = Hash::make($pass);
         $login->save();
         return "hello controller";
     }

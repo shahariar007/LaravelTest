@@ -38,7 +38,7 @@
 
 <div style="text-align:center;min-height:800px;max-width:1500px;padding-top:100px">
 
-    <form action="/auth/login" method="post">
+    <form action="{{action('loginController@login')}}" method="post">
         {{csrf_field()}}
         <table align="center" >
             <tr align="center"> LOGIN </tr>
