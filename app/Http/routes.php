@@ -18,9 +18,12 @@ Route::get('/', function () {
 Route::get('registration', function () {
     return View::make('registration');
 });
-Route::get('about', function () {
+/*Route::get('about',function()
+{
     return View::make('about');
-});
+});*/
+Route::get('about','loginController@showLoginCheck' );
+
 Route::get('logout',"loginController@logout");
 
 Route::get('work',array('as'=>'work',function () {
@@ -28,7 +31,7 @@ Route::get('work',array('as'=>'work',function () {
 }));
 Route::get('login', 'loginController@showLoginView');
 Route::post('store','TestController@store' );
-Route::post('/login_handle','loginController@login');
+Route::post('vialogin','loginController@login');
 
 
 

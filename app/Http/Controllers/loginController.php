@@ -14,18 +14,33 @@ use Illuminate\Support\Facades\View;
 
 class loginController extends Controller
 {
+    function showLoginCheck()
+    {
+
+        if ((Auth::check()) == false) {
+            return View::make('login');
+        }
+        else return View::make('about');
+        if (Auth::viaRemember()) {
+            return View::make('login');
+            //return Redirect::to('/about');
+        }
+
+    }
+
     function showLoginView()
     {
         if (Auth::check()) {
-
-            return Redirect::to('/about');
+            return View::make('about');
+           // return Redirect::to('/about');
         }
         if (Auth::viaRemember()) {
-
-            return Redirect::to('about');
+            return View::make('about');
+            //return Redirect::to('/about');
         }
         return View::make('login');
     }
+
 
     function login()
     {
@@ -33,12 +48,12 @@ class loginController extends Controller
         $pass = Input::get('user_password');
         $cred = array(
             'user_email' => $email,
-            'password' => $pass
-        );
+            'password' => $pass);
 
 
         if (Auth::attempt($cred, $Remember = true)) {
-            return Redirect::to('/about');
+            return View::make('about');
+            //return Redirect::to('/about');
         } else {
 
             return Redirect::to('/login');
