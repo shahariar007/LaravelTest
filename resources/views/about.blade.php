@@ -38,21 +38,11 @@
 
 <div align="center" style="padding-top:50px; height:1000px">
     <h1 align="center"> Enter Question and Answer</h1>
-    <script >
-     $("#location_id").change(function (e)
-     {
-         e.preventDefault();
-         $.ajax({
-             type:'post',
-             url:
-         })
 
-     })
-
-    </script>
 
     <form action="" method="post">
-        <div style="margin-bottom:15px"><input name="location_id" type="text" placeholder="Location Id"/></div>
+        <div style="margin-bottom:15px"><input name="location_id" id="location_id" type="text" placeholder="Location Id"/></div>
+        <p id="idcheck" style=" color: #880000"></p>
         <table>
             <tr align="center">
                 <th width="40px" align="center" scope="col">Number</th>
@@ -349,7 +339,40 @@
         <input name="Submit" type="button" value="submit"/>
     </form>
 </div>
+<script >
+    $('#location_id').keyup(function (e)
+    {
 
+        $.ajax({
+            type:"get",
+            url:"{{action('DFController@CheckLID')}}",
+            data:
+            {
+              locationid: $('#location_id').val()
+            },
+
+            success : function(response)
+            {
+                console.log(response);
+                if(response==1)
+                {
+                    $(document).ready(function(){
+                            $('#idcheck').text("Already Exist");
+                        });
+                }
+                else
+                {
+                    $(document).ready(function(){
+                        $('#idcheck').text("");
+                    });
+                }
+            }
+
+        })
+
+    });
+
+</script>
 <footer style="text-align:center">
     <p> Copyright@2015</p>
 </footer>

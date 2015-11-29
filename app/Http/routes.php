@@ -25,6 +25,7 @@ Route::get('registration', function () {
 Route::get('about','loginController@showLoginCheck' );
 
 Route::get('logout',"loginController@logout");
+Route::get('checkid','DFController@CheckLID');
 
 Route::get('work',array('as'=>'work',function () {
     return View::make('work');
