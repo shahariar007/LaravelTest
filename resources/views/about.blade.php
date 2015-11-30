@@ -40,9 +40,9 @@
     <h1 align="center"> Enter Question and Answer</h1>
 
 
-    <form action="" method="post">
+    <form action="{{action('DFController@QInsert')}}" id="qform" method="post">
         <div style="margin-bottom:15px"><input name="location_id" id="location_id" type="text" placeholder="Location Id"/></div>
-        <p id="idcheck" style=" color: #880000"></p>
+        <p id="idcheck" style="color: #880000"></p>
         <table>
             <tr align="center">
                 <th width="40px" align="center" scope="col">Number</th>
@@ -55,12 +55,12 @@
             </tr>
             <tr>
                 <td align="center" valign="middle">1</td>
-                <td style="padding-bottom:5px"><textarea name="q1" cols="50" rows="1"></textarea></td>
-                <td><input name="a11" type="text" size="17px"/></td>
-                <td><input name="a12" type="text" size="17px"/></td>
-                <td><input name="a13" type="text" size="17px"/></td>
-                <td><input name="a14" type="text" size="17px"/></td>
-                <td align="center"><select name="a15">
+                <td style="padding-bottom:5px"><textarea class="q1"   cols="50" rows="1"></textarea></td>
+                <td><input class="a1" type="text" size="17px"/></td>
+                <td><input class="a2" type="text" size="17px"/></td>
+                <td><input class="a3" type="text" size="17px"/></td>
+                <td><input class="a4" type="text" size="17px"/></td>
+                <td align="center"><select class="c1" >
                         <option value="1">Answer A</option>
                         <option value="2">Answer B</option>
                         <option value="3">Answer C</option>
@@ -69,12 +69,12 @@
             </tr>
             <tr>
                 <td align="center" valign="middle">2</td>
-                <td style="padding-bottom:5px"><textarea name="q2" cols="50" rows="1"></textarea></td>
-                <td><input name="a21" type="text" size="17px"/></td>
-                <td><input name="a22" type="text" size="17px"/></td>
-                <td><input name="a23" type="text" size="17px"/></td>
-                <td><input name="a24" type="text" size="17px"/></td>
-                <td align="center"><select name="a25">
+                <td style="padding-bottom:5px"><textarea class="q1"   cols="50" rows="1"></textarea></td>
+                <td><input class="a1" type="text" size="17px"/></td>
+                <td><input class="a2" type="text" size="17px"/></td>
+                <td><input class="a3" type="text" size="17px"/></td>
+                <td><input class="a4" type="text" size="17px"/></td>
+                <td align="center"><select class="c1" >
                         <option value="1">Answer A</option>
                         <option value="2">Answer B</option>
                         <option value="3">Answer C</option>
@@ -83,12 +83,12 @@
             </tr>
             <tr>
                 <td align="center">3</td>
-                <td style="padding-bottom:5px"><textarea name="q3" cols="50" rows="1"></textarea></td>
-                <td><input name="a31" type="text" size="17px"/></td>
-                <td><input name="a32" type="text" size="17px"/></td>
-                <td><input name="a33" type="text" size="17px"/></td>
-                <td><input name="a34" type="text" size="17px"/></td>
-                <td align="center"><select name="a35">
+                <td style="padding-bottom:5px"><textarea class="q1"   cols="50" rows="1"></textarea></td>
+                <td><input class="a1" type="text" size="17px"/></td>
+                <td><input class="a2" type="text" size="17px"/></td>
+                <td><input class="a3" type="text" size="17px"/></td>
+                <td><input class="a4" type="text" size="17px"/></td>
+                <td align="center"><select class="c1" >
                         <option value="1">Answer A</option>
                         <option value="2">Answer B</option>
                         <option value="3">Answer C</option>
@@ -97,12 +97,12 @@
             </tr>
             <tr>
                 <td align="center" valign="middle">4</td>
-                <td style="padding-bottom:5px"><textarea name="q4" cols="50" rows="1"></textarea></td>
-                <td><input name="a41" type="text" size="17px"/></td>
-                <td><input name="a42" type="text" size="17px"/></td>
-                <td><input name="a43" type="text" size="17px"/></td>
-                <td><input name="a44" type="text" size="17px"/></td>
-                <td align="center"><select name="a45">
+                <td style="padding-bottom:5px"><textarea class="q1"   cols="50" rows="1"></textarea></td>
+                <td><input class="a1" type="text" size="17px"/></td>
+                <td><input class="a2" type="text" size="17px"/></td>
+                <td><input class="a3" type="text" size="17px"/></td>
+                <td><input class="a4" type="text" size="17px"/></td>
+                <td align="center"><select class="c1" >
                         <option value="1">Answer A</option>
                         <option value="2">Answer B</option>
                         <option value="3">Answer C</option>
@@ -111,12 +111,12 @@
             </tr>
             <tr>
                 <td align="center" valign="middle">5</td>
-                <td style="padding-bottom:5px"><textarea name="q5" cols="50" rows="1"></textarea></td>
-                <td><input name="a51" type="text" size="17px"/></td>
-                <td><input name="a52" type="text" size="17px"/></td>
-                <td><input name="a53" type="text" size="17px"/></td>
-                <td><input name="a54" type="text" size="17px"/></td>
-                <td align="center"><select name="a55">
+                <td style="padding-bottom:5px"><textarea class="q1"   cols="50" rows="1"></textarea></td>
+                <td><input class="a1" type="text" size="17px"/></td>
+                <td><input class="a2" type="text" size="17px"/></td>
+                <td><input class="a3" type="text" size="17px"/></td>
+                <td><input class="a4" type="text" size="17px"/></td>
+                <td align="center"><select class="c1" >
                         <option value="1">Answer A</option>
                         <option value="2">Answer B</option>
                         <option value="3">Answer C</option>
@@ -125,12 +125,12 @@
             </tr>
             <tr>
                 <td align="center" valign="middle">6</td>
-                <td style="padding-bottom:5px"><textarea name="q6" cols="50" rows="1"></textarea></td>
-                <td><input name="a61" type="text" size="17px"/></td>
-                <td><input name="a62" type="text" size="17px"/></td>
-                <td><input name="a63" type="text" size="17px"/></td>
-                <td><input name="a64" type="text" size="17px"/></td>
-                <td align="center"><select name="a65">
+                <td style="padding-bottom:5px"><textarea class="q1"   cols="50" rows="1"></textarea></td>
+                <td><input class="a1" type="text" size="17px"/></td>
+                <td><input class="a2" type="text" size="17px"/></td>
+                <td><input class="a3" type="text" size="17px"/></td>
+                <td><input class="a4" type="text" size="17px"/></td>
+                <td align="center"><select class="c1" >
                         <option value="1">Answer A</option>
                         <option value="2">Answer B</option>
                         <option value="3">Answer C</option>
@@ -139,12 +139,12 @@
             </tr>
             <tr>
                 <td align="center" valign="middle">7</td>
-                <td style="padding-bottom:5px"><textarea name="q7" cols="50" rows="1"></textarea></td>
-                <td><input name="a71" type="text" size="17px"/></td>
-                <td><input name="a72" type="text" size="17px"/></td>
-                <td><input name="a73" type="text" size="17px"/></td>
-                <td><input name="a74" type="text" size="17px"/></td>
-                <td align="center"><select name="a75">
+                <td style="padding-bottom:5px"><textarea class="q1"   cols="50" rows="1"></textarea></td>
+                <td><input class="a1" type="text" size="17px"/></td>
+                <td><input class="a2" type="text" size="17px"/></td>
+                <td><input class="a3" type="text" size="17px"/></td>
+                <td><input class="a4" type="text" size="17px"/></td>
+                <td align="center"><select class="c1">
                         <option value="1">Answer A</option>
                         <option value="2">Answer B</option>
                         <option value="3">Answer C</option>
@@ -153,12 +153,12 @@
             </tr>
             <tr>
                 <td align="center" valign="middle">8</td>
-                <td style="padding-bottom:5px"><textarea name="q8" cols="50" rows="1"></textarea></td>
-                <td><input name="a81" type="text" size="17px"/></td>
-                <td><input name="a82" type="text" size="17px"/></td>
-                <td><input name="a83" type="text" size="17px"/></td>
-                <td><input name="a84" type="text" size="17px"/></td>
-                <td align="center"><select name="a85">
+                <td style="padding-bottom:5px"><textarea class="q1"   cols="50" rows="1"></textarea></td>
+                <td><input class="a1" type="text" size="17px"/></td>
+                <td><input class="a2" type="text" size="17px"/></td>
+                <td><input class="a3" type="text" size="17px"/></td>
+                <td><input class="a4" type="text" size="17px"/></td>
+                <td align="center"><select class="c1" >
                         <option value="1">Answer A</option>
                         <option value="2">Answer B</option>
                         <option value="3">Answer C</option>
@@ -167,12 +167,12 @@
             </tr>
             <tr>
                 <td align="center" valign="middle">9</td>
-                <td style="padding-bottom:5px"><textarea name="q9" cols="50" rows="1"></textarea></td>
-                <td><input name="a91" type="text" size="17px"/></td>
-                <td><input name="a92" type="text" size="17px"/></td>
-                <td><input name="a93" type="text" size="17px"/></td>
-                <td><input name="a94" type="text" size="17px"/></td>
-                <td align="center"><select name="a95">
+                <td style="padding-bottom:5px"><textarea class="q1"   cols="50" rows="1"></textarea></td>
+                <td><input class="a1" type="text" size="17px"/></td>
+                <td><input class="a2" type="text" size="17px"/></td>
+                <td><input class="a3" type="text" size="17px"/></td>
+                <td><input class="a4" type="text" size="17px"/></td>
+                <td align="center"><select class="c1" >
                         <option value="1">Answer A</option>
                         <option value="2">Answer B</option>
                         <option value="3">Answer C</option>
@@ -181,12 +181,12 @@
             </tr>
             <tr>
                 <td align="center" valign="middle">10</td>
-                <td style="padding-bottom:5px"><textarea name="q10" cols="50" rows="1"></textarea></td>
-                <td><input name="a101" type="text" size="17px"/></td>
-                <td><input name="a102" type="text" size="17px"/></td>
-                <td><input name="a103" type="text" size="17px"/></td>
-                <td><input name="a104" type="text" size="17px"/></td>
-                <td align="center"><select name="a105">
+                <td style="padding-bottom:5px"><textarea class="q1"   cols="50" rows="1"></textarea></td>
+                <td><input class="a1" type="text" size="17px"/></td>
+                <td><input class="a2" type="text" size="17px"/></td>
+                <td><input class="a3" type="text" size="17px"/></td>
+                <td><input class="a4" type="text" size="17px"/></td>
+                <td align="center"><select class="c1" >
                         <option value="1">Answer A</option>
                         <option value="2">Answer B</option>
                         <option value="3">Answer C</option>
@@ -195,12 +195,12 @@
             </tr>
             <tr>
                 <td align="center" valign="middle">11</td>
-                <td style="padding-bottom:5px"><textarea name="q11" cols="50" rows="1"></textarea></td>
-                <td><input name="a111" type="text" size="17px"/></td>
-                <td><input name="a112" type="text" size="17px"/></td>
-                <td><input name="a113" type="text" size="17px"/></td>
-                <td><input name="a114" type="text" size="17px"/></td>
-                <td align="center"><select name="a115">
+                <td style="padding-bottom:5px"><textarea class="q1"   cols="50" rows="1"></textarea></td>
+                <td><input class="a1" type="text" size="17px"/></td>
+                <td><input class="a2" type="text" size="17px"/></td>
+                <td><input class="a3" type="text" size="17px"/></td>
+                <td><input class="a4" type="text" size="17px"/></td>
+                <td align="center"><select class="c1" >
                         <option value="1">Answer A</option>
                         <option value="2">Answer B</option>
                         <option value="3">Answer C</option>
@@ -209,12 +209,12 @@
             </tr>
             <tr>
                 <td align="center" valign="middle">12</td>
-                <td style="padding-bottom:5px"><textarea name="q12" cols="50" rows="1"></textarea></td>
-                <td><input name="a121" type="text" size="17px"/></td>
-                <td><input name="a122" type="text" size="17px"/></td>
-                <td><input name="a123" type="text" size="17px"/></td>
-                <td><input name="a124" type="text" size="17px"/></td>
-                <td align="center"><select name="a125">
+                <td style="padding-bottom:5px"><textarea class="q1"   cols="50" rows="1"></textarea></td>
+                <td><input class="a1" type="text" size="17px"/></td>
+                <td><input class="a2" type="text" size="17px"/></td>
+                <td><input class="a3" type="text" size="17px"/></td>
+                <td><input class="a4" type="text" size="17px"/></td>
+                <td align="center"><select class="c1" >
                         <option value="1">Answer A</option>
                         <option value="2">Answer B</option>
                         <option value="3">Answer C</option>
@@ -223,12 +223,12 @@
             </tr>
             <tr>
                 <td align="center" valign="middle">13</td>
-                <td style="padding-bottom:5px"><textarea name="q13" cols="50" rows="1"></textarea></td>
-                <td><input name="a131" type="text" size="17px"/></td>
-                <td><input name="a132" type="text" size="17px"/></td>
-                <td><input name="a133" type="text" size="17px"/></td>
-                <td><input name="a134" type="text" size="17px"/></td>
-                <td align="center"><select name="a135">
+                <td style="padding-bottom:5px"><textarea class="q1"   cols="50" rows="1"></textarea></td>
+                <td><input class="a1" type="text" size="17px"/></td>
+                <td><input class="a2" type="text" size="17px"/></td>
+                <td><input class="a3" type="text" size="17px"/></td>
+                <td><input class="a4" type="text" size="17px"/></td>
+                <td align="center"><select class="c1" >
                         <option value="1">Answer A</option>
                         <option value="2">Answer B</option>
                         <option value="3">Answer C</option>
@@ -237,12 +237,12 @@
             </tr>
             <tr>
                 <td align="center" valign="middle">14</td>
-                <td style="padding-bottom:5px"><textarea name="q14" cols="50" rows="1"></textarea></td>
-                <td><input name="a141" type="text" size="17px"/></td>
-                <td><input name="a142" type="text" size="17px"/></td>
-                <td><input name="a143" type="text" size="17px"/></td>
-                <td><input name="a144" type="text" size="17px"/></td>
-                <td align="center"><select name="a145">
+                <td style="padding-bottom:5px"><textarea class="q1"   cols="50" rows="1"></textarea></td>
+                <td><input class="a1" type="text" size="17px"/></td>
+                <td><input class="a2" type="text" size="17px"/></td>
+                <td><input class="a3" type="text" size="17px"/></td>
+                <td><input class="a4" type="text" size="17px"/></td>
+                <td align="center"><select class="c1" >
                         <option value="1">Answer A</option>
                         <option value="2">Answer B</option>
                         <option value="3">Answer C</option>
@@ -251,12 +251,12 @@
             </tr>
             <tr>
                 <td align="center" valign="middle">15</td>
-                <td style="padding-bottom:5px"><textarea name="q15" cols="50" rows="1"></textarea></td>
-                <td><input name="a151" type="text" size="17px"/></td>
-                <td><input name="a152" type="text" size="17px"/></td>
-                <td><input name="a153" type="text" size="17px"/></td>
-                <td><input name="a154" type="text" size="17px"/></td>
-                <td align="center"><select name="a155">
+                <td style="padding-bottom:5px"><textarea class="q1"   cols="50" rows="1"></textarea></td>
+                <td><input class="a1" type="text" size="17px"/></td>
+                <td><input class="a2" type="text" size="17px"/></td>
+                <td><input class="a3" type="text" size="17px"/></td>
+                <td><input class="a4" type="text" size="17px"/></td>
+                <td align="center"><select class="c1" >
                         <option value="1">Answer A</option>
                         <option value="2">Answer B</option>
                         <option value="3">Answer C</option>
@@ -265,12 +265,12 @@
             </tr>
             <tr>
                 <td align="center" valign="middle">16</td>
-                <td style="padding-bottom:5px"><textarea name="q16" cols="50" rows="1"></textarea></td>
-                <td><input name="a161" type="text" size="17px"/></td>
-                <td><input name="a162" type="text" size="17px"/></td>
-                <td><input name="a163" type="text" size="17px"/></td>
-                <td><input name="a64" type="text" size="17px"/></td>
-                <td align="center"><select name="a167">
+                <td style="padding-bottom:5px"><textarea class="q1"   cols="50" rows="1"></textarea></td>
+                <td><input class="a1" type="text" size="17px"/></td>
+                <td><input class="a2" type="text" size="17px"/></td>
+                <td><input class="a3" type="text" size="17px"/></td>
+                <td><input class="a4" type="text" size="17px"/></td>
+                <td align="center"><select class="c1" >
                         <option value="1">Answer A</option>
                         <option value="2">Answer B</option>
                         <option value="3">Answer C</option>
@@ -279,12 +279,12 @@
             </tr>
             <tr>
                 <td align="center" valign="middle">17</td>
-                <td style="padding-bottom:5px"><textarea name="q17" cols="50" rows="1"></textarea></td>
-                <td><input name="a171" type="text" size="17px"/></td>
-                <td><input name="a172" type="text" size="17px"/></td>
-                <td><input name="a173" type="text" size="17px"/></td>
-                <td><input name="a174" type="text" size="17px"/></td>
-                <td align="center"><select name="a178">
+                <td style="padding-bottom:5px"><textarea class="q1"   cols="50" rows="1"></textarea></td>
+                <td><input class="a1" type="text" size="17px"/></td>
+                <td><input class="a2" type="text" size="17px"/></td>
+                <td><input class="a3" type="text" size="17px"/></td>
+                <td><input class="a4" type="text" size="17px"/></td>
+                <td align="center"><select class="c1" >
                         <option value="1">Answer A</option>
                         <option value="2">Answer B</option>
                         <option value="3">Answer C</option>
@@ -293,12 +293,12 @@
             </tr>
             <tr>
                 <td align="center" valign="middle">18</td>
-                <td style="padding-bottom:5px"><textarea name="q18" cols="50" rows="1"></textarea></td>
-                <td><input name="a181" type="text" size="17px"/></td>
-                <td><input name="a182" type="text" size="17px"/></td>
-                <td><input name="a183" type="text" size="17px"/></td>
-                <td><input name="a184" type="text" size="17px"/></td>
-                <td align="center"><select name="a185">
+                <td style="padding-bottom:5px"><textarea class="q1"   cols="50" rows="1"></textarea></td>
+                <td><input class="a1" type="text" size="17px"/></td>
+                <td><input class="a2" type="text" size="17px"/></td>
+                <td><input class="a3" type="text" size="17px"/></td>
+                <td><input class="a4" type="text" size="17px"/></td>
+                <td align="center"><select class="c1" >
                         <option value="1">Answer A</option>
                         <option value="2">Answer B</option>
                         <option value="3">Answer C</option>
@@ -307,12 +307,12 @@
             </tr>
             <tr>
                 <td align="center" valign="middle">19</td>
-                <td style="padding-bottom:5px"><textarea name="q19" cols="50" rows="1"></textarea></td>
-                <td><input name="a191" type="text" size="17px"/></td>
-                <td><input name="a192" type="text" size="17px"/></td>
-                <td><input name="a193" type="text" size="17px"/></td>
-                <td><input name="a194" type="text" size="17px"/></td>
-                <td align="center"><select name="a195">
+                <td style="padding-bottom:5px"><textarea class="q1"   cols="50" rows="1"></textarea></td>
+                <td><input class="a1" type="text" size="17px"/></td>
+                <td><input class="a2" type="text" size="17px"/></td>
+                <td><input class="a3" type="text" size="17px"/></td>
+                <td><input class="a4" type="text" size="17px"/></td>
+                <td align="center"><select class="c1" >
                         <option value="1">Answer A</option>
                         <option value="2">Answer B</option>
                         <option value="3">Answer C</option>
@@ -321,12 +321,12 @@
             </tr>
             <tr>
                 <td align="center" valign="middle">20</td>
-                <td style="padding-bottom:5px"><textarea name="q20" cols="50" rows="1"></textarea></td>
-                <td><input name="a201" type="text" size="17px"/></td>
-                <td><input name="a202" type="text" size="17px"/></td>
-                <td><input name="a203" type="text" size="17px"/></td>
-                <td><input name="a204" type="text" size="17px"/></td>
-                <td align="center"><select name="a205">
+                <td style="padding-bottom:5px"><textarea class="q1"   cols="50" rows="1"></textarea></td>
+                <td><input class="a1" type="text" size="17px"/></td>
+                <td><input class="a2" type="text" size="17px"/></td>
+                <td><input class="a3" type="text" size="17px"/></td>
+                <td><input class="a4" type="text" size="17px"/></td>
+                <td align="center"><select class="c1" >
                         <option value="1">Answer A</option>
                         <option value="2">Answer B</option>
                         <option value="3">Answer C</option>
@@ -336,7 +336,7 @@
 
 
         </table>
-        <input name="Submit" type="button" value="submit"/>
+        <input class="insertbutton" id="qinsert" type="button" value="Save"  />
     </form>
 </div>
 <script >
@@ -371,6 +371,57 @@
         })
 
     });
+
+
+</script>
+<script >
+    $(document).ready(function () {
+        $('#qinsert').click(function(e){
+            e.preventDefault();
+            e.stopPropagation();
+            $.ajax({
+                type:"get",
+                url:"{{action('DFController@QInsert')}}",
+                data:
+                {
+                    Locationid:$('#location_id').val(),
+                    Questionset:getQuestion($('.q1')),
+                    Questionop:[getOptions($('.a1')),getOptions($('.a2')),getOptions($('.a3')),getOptions($('.a4'))],
+                   CurrectAns:getAnswar($('.c1'))
+                },
+
+                success : function(response)
+                {
+                    console.log(response);
+
+
+                }
+
+            })
+        });
+        function getOptions(option){
+            var o = [];
+            option.each(function (i) {
+                o.push($(this).val())
+            })
+            return o;
+        }
+        function getQuestion(option){
+            var o = [];
+            option.each(function (i) {
+                o.push($(this).val())
+            })
+            return o;
+        }
+        function getAnswar(option){
+            var o = [];
+            option.each(function (i) {
+                o.push($(this).val())
+            })
+            return o;
+        }
+    });
+
 
 </script>
 <footer style="text-align:center">
