@@ -29,10 +29,7 @@
         <div id="navbar" class="collapse navbar-collapse">
             <ul class="nav navbar-nav">
                 <li><a href="http://localhost/test-laravel-5-project/public/work">Home</a></li>
-                <li><a href="{{action('QuesController@showLoginCk')}}">Question</a></li>
-                <li><a href="http://localhost/test-laravel-5-project/public/login">Login</a> </li>
-                <li><a href="http://localhost/test-laravel-5-project/public/registration">Registration</a> </li>
-
+                <li><a href="{{action('loginController@logout')}}">Logout</a> </li>
             </ul>
         </div>
         <!--/.nav-collapse -->

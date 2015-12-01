@@ -25,7 +25,7 @@
             <div id="navbar" class="collapse navbar-collapse">
                 <ul class="nav navbar-nav">
                     <li><a href="http://localhost/test-laravel-5-project/public/work">Home</a></li>
-                    <li><a href="">Item</a></li>
+                    <li><a href="{{action('QuesController@showLoginCk')}}">Question</a></li>
 
                     <li><a href="{{action('loginController@logout')}}">Logout</a></li>
                 </ul>
@@ -41,9 +41,16 @@
 
 
     <form action="{{action('DFController@QInsert')}}" id="qform" method="post">
-        <div style="margin-bottom:15px"><input name="location_id" id="location_id" type="text" placeholder="Location Id"/></div>
+        <div style="margin-bottom:15px"><input name="location_id" id="location_id" type="text"
+                                               placeholder="Location Id"/></div>
         <p id="idcheck" style="color: #880000"></p>
-        <table>
+
+        <div>
+            <input name="addbutton" value="Add" type="button" class="addbuttoncls"/>
+            <input name="removebutton" value="Remove" type="button" class="removebuttoncls"/>
+
+        </div>
+        <table class="rowadd" style="border-collapse:separate;border-spacing: 0 0.5em;">
             <tr align="center">
                 <th width="40px" align="center" scope="col">Number</th>
                 <td width="380px" scope="col"><strong>Question</strong></td>
@@ -55,91 +62,7 @@
             </tr>
             <tr>
                 <td align="center" valign="middle">1</td>
-                <td style="padding-bottom:5px"><textarea class="q1"   cols="50" rows="1"></textarea></td>
-                <td><input class="a1" type="text" size="17px"/></td>
-                <td><input class="a2" type="text" size="17px"/></td>
-                <td><input class="a3" type="text" size="17px"/></td>
-                <td><input class="a4" type="text" size="17px"/></td>
-                <td align="center"><select class="c1" >
-                        <option value="1">Answer A</option>
-                        <option value="2">Answer B</option>
-                        <option value="3">Answer C</option>
-                        <option value="4">Answer D</option>
-                    </select></td>
-            </tr>
-            <tr>
-                <td align="center" valign="middle">2</td>
-                <td style="padding-bottom:5px"><textarea class="q1"   cols="50" rows="1"></textarea></td>
-                <td><input class="a1" type="text" size="17px"/></td>
-                <td><input class="a2" type="text" size="17px"/></td>
-                <td><input class="a3" type="text" size="17px"/></td>
-                <td><input class="a4" type="text" size="17px"/></td>
-                <td align="center"><select class="c1" >
-                        <option value="1">Answer A</option>
-                        <option value="2">Answer B</option>
-                        <option value="3">Answer C</option>
-                        <option value="4">Answer D</option>
-                    </select></td>
-            </tr>
-            <tr>
-                <td align="center">3</td>
-                <td style="padding-bottom:5px"><textarea class="q1"   cols="50" rows="1"></textarea></td>
-                <td><input class="a1" type="text" size="17px"/></td>
-                <td><input class="a2" type="text" size="17px"/></td>
-                <td><input class="a3" type="text" size="17px"/></td>
-                <td><input class="a4" type="text" size="17px"/></td>
-                <td align="center"><select class="c1" >
-                        <option value="1">Answer A</option>
-                        <option value="2">Answer B</option>
-                        <option value="3">Answer C</option>
-                        <option value="4">Answer D</option>
-                    </select></td>
-            </tr>
-            <tr>
-                <td align="center" valign="middle">4</td>
-                <td style="padding-bottom:5px"><textarea class="q1"   cols="50" rows="1"></textarea></td>
-                <td><input class="a1" type="text" size="17px"/></td>
-                <td><input class="a2" type="text" size="17px"/></td>
-                <td><input class="a3" type="text" size="17px"/></td>
-                <td><input class="a4" type="text" size="17px"/></td>
-                <td align="center"><select class="c1" >
-                        <option value="1">Answer A</option>
-                        <option value="2">Answer B</option>
-                        <option value="3">Answer C</option>
-                        <option value="4">Answer D</option>
-                    </select></td>
-            </tr>
-            <tr>
-                <td align="center" valign="middle">5</td>
-                <td style="padding-bottom:5px"><textarea class="q1"   cols="50" rows="1"></textarea></td>
-                <td><input class="a1" type="text" size="17px"/></td>
-                <td><input class="a2" type="text" size="17px"/></td>
-                <td><input class="a3" type="text" size="17px"/></td>
-                <td><input class="a4" type="text" size="17px"/></td>
-                <td align="center"><select class="c1" >
-                        <option value="1">Answer A</option>
-                        <option value="2">Answer B</option>
-                        <option value="3">Answer C</option>
-                        <option value="4">Answer D</option>
-                    </select></td>
-            </tr>
-            <tr>
-                <td align="center" valign="middle">6</td>
-                <td style="padding-bottom:5px"><textarea class="q1"   cols="50" rows="1"></textarea></td>
-                <td><input class="a1" type="text" size="17px"/></td>
-                <td><input class="a2" type="text" size="17px"/></td>
-                <td><input class="a3" type="text" size="17px"/></td>
-                <td><input class="a4" type="text" size="17px"/></td>
-                <td align="center"><select class="c1" >
-                        <option value="1">Answer A</option>
-                        <option value="2">Answer B</option>
-                        <option value="3">Answer C</option>
-                        <option value="4">Answer D</option>
-                    </select></td>
-            </tr>
-            <tr>
-                <td align="center" valign="middle">7</td>
-                <td style="padding-bottom:5px"><textarea class="q1"   cols="50" rows="1"></textarea></td>
+                <td><textarea class="q1" cols="50" rows="1"></textarea></td>
                 <td><input class="a1" type="text" size="17px"/></td>
                 <td><input class="a2" type="text" size="17px"/></td>
                 <td><input class="a3" type="text" size="17px"/></td>
@@ -151,218 +74,30 @@
                         <option value="4">Answer D</option>
                     </select></td>
             </tr>
-            <tr>
-                <td align="center" valign="middle">8</td>
-                <td style="padding-bottom:5px"><textarea class="q1"   cols="50" rows="1"></textarea></td>
-                <td><input class="a1" type="text" size="17px"/></td>
-                <td><input class="a2" type="text" size="17px"/></td>
-                <td><input class="a3" type="text" size="17px"/></td>
-                <td><input class="a4" type="text" size="17px"/></td>
-                <td align="center"><select class="c1" >
-                        <option value="1">Answer A</option>
-                        <option value="2">Answer B</option>
-                        <option value="3">Answer C</option>
-                        <option value="4">Answer D</option>
-                    </select></td>
-            </tr>
-            <tr>
-                <td align="center" valign="middle">9</td>
-                <td style="padding-bottom:5px"><textarea class="q1"   cols="50" rows="1"></textarea></td>
-                <td><input class="a1" type="text" size="17px"/></td>
-                <td><input class="a2" type="text" size="17px"/></td>
-                <td><input class="a3" type="text" size="17px"/></td>
-                <td><input class="a4" type="text" size="17px"/></td>
-                <td align="center"><select class="c1" >
-                        <option value="1">Answer A</option>
-                        <option value="2">Answer B</option>
-                        <option value="3">Answer C</option>
-                        <option value="4">Answer D</option>
-                    </select></td>
-            </tr>
-            <tr>
-                <td align="center" valign="middle">10</td>
-                <td style="padding-bottom:5px"><textarea class="q1"   cols="50" rows="1"></textarea></td>
-                <td><input class="a1" type="text" size="17px"/></td>
-                <td><input class="a2" type="text" size="17px"/></td>
-                <td><input class="a3" type="text" size="17px"/></td>
-                <td><input class="a4" type="text" size="17px"/></td>
-                <td align="center"><select class="c1" >
-                        <option value="1">Answer A</option>
-                        <option value="2">Answer B</option>
-                        <option value="3">Answer C</option>
-                        <option value="4">Answer D</option>
-                    </select></td>
-            </tr>
-            <tr>
-                <td align="center" valign="middle">11</td>
-                <td style="padding-bottom:5px"><textarea class="q1"   cols="50" rows="1"></textarea></td>
-                <td><input class="a1" type="text" size="17px"/></td>
-                <td><input class="a2" type="text" size="17px"/></td>
-                <td><input class="a3" type="text" size="17px"/></td>
-                <td><input class="a4" type="text" size="17px"/></td>
-                <td align="center"><select class="c1" >
-                        <option value="1">Answer A</option>
-                        <option value="2">Answer B</option>
-                        <option value="3">Answer C</option>
-                        <option value="4">Answer D</option>
-                    </select></td>
-            </tr>
-            <tr>
-                <td align="center" valign="middle">12</td>
-                <td style="padding-bottom:5px"><textarea class="q1"   cols="50" rows="1"></textarea></td>
-                <td><input class="a1" type="text" size="17px"/></td>
-                <td><input class="a2" type="text" size="17px"/></td>
-                <td><input class="a3" type="text" size="17px"/></td>
-                <td><input class="a4" type="text" size="17px"/></td>
-                <td align="center"><select class="c1" >
-                        <option value="1">Answer A</option>
-                        <option value="2">Answer B</option>
-                        <option value="3">Answer C</option>
-                        <option value="4">Answer D</option>
-                    </select></td>
-            </tr>
-            <tr>
-                <td align="center" valign="middle">13</td>
-                <td style="padding-bottom:5px"><textarea class="q1"   cols="50" rows="1"></textarea></td>
-                <td><input class="a1" type="text" size="17px"/></td>
-                <td><input class="a2" type="text" size="17px"/></td>
-                <td><input class="a3" type="text" size="17px"/></td>
-                <td><input class="a4" type="text" size="17px"/></td>
-                <td align="center"><select class="c1" >
-                        <option value="1">Answer A</option>
-                        <option value="2">Answer B</option>
-                        <option value="3">Answer C</option>
-                        <option value="4">Answer D</option>
-                    </select></td>
-            </tr>
-            <tr>
-                <td align="center" valign="middle">14</td>
-                <td style="padding-bottom:5px"><textarea class="q1"   cols="50" rows="1"></textarea></td>
-                <td><input class="a1" type="text" size="17px"/></td>
-                <td><input class="a2" type="text" size="17px"/></td>
-                <td><input class="a3" type="text" size="17px"/></td>
-                <td><input class="a4" type="text" size="17px"/></td>
-                <td align="center"><select class="c1" >
-                        <option value="1">Answer A</option>
-                        <option value="2">Answer B</option>
-                        <option value="3">Answer C</option>
-                        <option value="4">Answer D</option>
-                    </select></td>
-            </tr>
-            <tr>
-                <td align="center" valign="middle">15</td>
-                <td style="padding-bottom:5px"><textarea class="q1"   cols="50" rows="1"></textarea></td>
-                <td><input class="a1" type="text" size="17px"/></td>
-                <td><input class="a2" type="text" size="17px"/></td>
-                <td><input class="a3" type="text" size="17px"/></td>
-                <td><input class="a4" type="text" size="17px"/></td>
-                <td align="center"><select class="c1" >
-                        <option value="1">Answer A</option>
-                        <option value="2">Answer B</option>
-                        <option value="3">Answer C</option>
-                        <option value="4">Answer D</option>
-                    </select></td>
-            </tr>
-            <tr>
-                <td align="center" valign="middle">16</td>
-                <td style="padding-bottom:5px"><textarea class="q1"   cols="50" rows="1"></textarea></td>
-                <td><input class="a1" type="text" size="17px"/></td>
-                <td><input class="a2" type="text" size="17px"/></td>
-                <td><input class="a3" type="text" size="17px"/></td>
-                <td><input class="a4" type="text" size="17px"/></td>
-                <td align="center"><select class="c1" >
-                        <option value="1">Answer A</option>
-                        <option value="2">Answer B</option>
-                        <option value="3">Answer C</option>
-                        <option value="4">Answer D</option>
-                    </select></td>
-            </tr>
-            <tr>
-                <td align="center" valign="middle">17</td>
-                <td style="padding-bottom:5px"><textarea class="q1"   cols="50" rows="1"></textarea></td>
-                <td><input class="a1" type="text" size="17px"/></td>
-                <td><input class="a2" type="text" size="17px"/></td>
-                <td><input class="a3" type="text" size="17px"/></td>
-                <td><input class="a4" type="text" size="17px"/></td>
-                <td align="center"><select class="c1" >
-                        <option value="1">Answer A</option>
-                        <option value="2">Answer B</option>
-                        <option value="3">Answer C</option>
-                        <option value="4">Answer D</option>
-                    </select></td>
-            </tr>
-            <tr>
-                <td align="center" valign="middle">18</td>
-                <td style="padding-bottom:5px"><textarea class="q1"   cols="50" rows="1"></textarea></td>
-                <td><input class="a1" type="text" size="17px"/></td>
-                <td><input class="a2" type="text" size="17px"/></td>
-                <td><input class="a3" type="text" size="17px"/></td>
-                <td><input class="a4" type="text" size="17px"/></td>
-                <td align="center"><select class="c1" >
-                        <option value="1">Answer A</option>
-                        <option value="2">Answer B</option>
-                        <option value="3">Answer C</option>
-                        <option value="4">Answer D</option>
-                    </select></td>
-            </tr>
-            <tr>
-                <td align="center" valign="middle">19</td>
-                <td style="padding-bottom:5px"><textarea class="q1"   cols="50" rows="1"></textarea></td>
-                <td><input class="a1" type="text" size="17px"/></td>
-                <td><input class="a2" type="text" size="17px"/></td>
-                <td><input class="a3" type="text" size="17px"/></td>
-                <td><input class="a4" type="text" size="17px"/></td>
-                <td align="center"><select class="c1" >
-                        <option value="1">Answer A</option>
-                        <option value="2">Answer B</option>
-                        <option value="3">Answer C</option>
-                        <option value="4">Answer D</option>
-                    </select></td>
-            </tr>
-            <tr>
-                <td align="center" valign="middle">20</td>
-                <td style="padding-bottom:5px"><textarea class="q1"   cols="50" rows="1"></textarea></td>
-                <td><input class="a1" type="text" size="17px"/></td>
-                <td><input class="a2" type="text" size="17px"/></td>
-                <td><input class="a3" type="text" size="17px"/></td>
-                <td><input class="a4" type="text" size="17px"/></td>
-                <td align="center"><select class="c1" >
-                        <option value="1">Answer A</option>
-                        <option value="2">Answer B</option>
-                        <option value="3">Answer C</option>
-                        <option value="4">Answer D</option>
-                    </select></td>
-            </tr>
-
-
         </table>
-        <input class="insertbutton" id="qinsert" type="button" value="Save"  />
+        <input class="insertbutton" id="qinsert" type="button" value="Save"/>
     </form>
+    <p id="insertNotification"></p>
 </div>
-<script >
-    $('#location_id').keyup(function (e)
-    {
+<script>
+    $('#location_id').keyup(function (e) {
 
         $.ajax({
-            type:"get",
-            url:"{{action('DFController@CheckLID')}}",
-            data:
-            {
-              locationid: $('#location_id').val()
+            type: "get",
+            url: "{{action('DFController@CheckLID')}}",
+            data: {
+                locationid: $('#location_id').val()
             },
 
-            success : function(response)
-            {
+            success: function (response) {
                 console.log(response);
-                if(response==1)
-                {
-                    $(document).ready(function(){
-                            $('#idcheck').text("Already Exist");
-                        });
+                if (response == 1) {
+                    $(document).ready(function () {
+                        $('#idcheck').text("Already Exist");
+                    });
                 }
-                else
-                {
-                    $(document).ready(function(){
+                else {
+                    $(document).ready(function () {
                         $('#idcheck').text("");
                     });
                 }
@@ -374,46 +109,66 @@
 
 
 </script>
-<script >
+<script>
     $(document).ready(function () {
-        $('#qinsert').click(function(e){
+        $('#qinsert').click(function (e) {
             e.preventDefault();
             e.stopPropagation();
             $.ajax({
-                type:"get",
-                url:"{{action('DFController@QInsert')}}",
-                data:
-                {
-                    Locationid:$('#location_id').val(),
-                    Questionset:getQuestion($('.q1')),
-                    Questionop:[getOptions($('.a1')),getOptions($('.a2')),getOptions($('.a3')),getOptions($('.a4'))],
-                   CurrectAns:getAnswar($('.c1'))
+                type: "get",
+                url: "{{action('DFController@QInsert')}}",
+                data: {
+                    Locationid: $('#location_id').val(),
+                    Questionset: getQuestion($('.q1')),
+                    Questionop: [getOptions($('.a1')), getOptions($('.a2')), getOptions($('.a3')), getOptions($('.a4'))],
+                    CurrectAns: getAnswar($('.c1'))
                 },
 
-                success : function(response)
-                {
+                success: function (response) {
                     console.log(response);
+                    if (response == 1) {
+                        $(document).ready(function () {
+                            $('#insertNotification').text("Data Successfully Save");
+                            $('.q1').val("");
+                            $('.a1').val("");
+                            $('.a2').val("");
+                            $('.a3').val("");
+                            $('.a4').val("");
+                            $('.c1').val("");
+                            $('#location_id').val("");
+
+                           //location.reload(true);
+                        });
+                    }
+                    else {
+                        $(document).ready(function () {
+                            $('#insertNotification').text(response);
+                        });
+
+                    }
 
 
                 }
 
             })
         });
-        function getOptions(option){
+        function getOptions(option) {
             var o = [];
             option.each(function (i) {
                 o.push($(this).val())
             })
             return o;
         }
-        function getQuestion(option){
+
+        function getQuestion(option) {
             var o = [];
             option.each(function (i) {
                 o.push($(this).val())
             })
             return o;
         }
-        function getAnswar(option){
+
+        function getAnswar(option) {
             var o = [];
             option.each(function (i) {
                 o.push($(this).val())
@@ -424,9 +179,26 @@
 
 
 </script>
-<footer style="text-align:center">
+<script>
+    var i = 2;
+    $('.addbuttoncls').click(function () {
+
+        $(".rowadd").append('<tr style="padding-bottom:5px"><td align="center" valign="middle">' + (i++) + '</td><td ><textarea class="q1"cols="50" rows="1"></textarea></td><td><input class="a1" type="text" size="17px"/></td><td><input class="a2" type="text" size="17px"/></td><td><input class="a3" type="text" size="17px"/></td><td><input class="a4" type="text" size="17px"/></td><td align="center"><select class="c1" ><option value="1">Answer A</option><option value="2">Answer B</option><option value="3">Answer C</option><option value="4">Answer D</option></select></td></tr>');
+    });
+    $('.removebuttoncls').click(function () {
+        if ($(".rowadd tr").length != 2) {
+            $(".rowadd tr:last-child").remove();
+            i--;
+        }
+        else {
+            alert("You cannot delete first row");
+        }
+
+    });
+</script>
+{{--<footer style="text-align:center; position:relative">
     <p> Copyright@2015</p>
-</footer>
+</footer>--}}
 
 </body>
 </html>

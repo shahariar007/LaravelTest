@@ -23,6 +23,7 @@ Route::get('registration', function () {
     return View::make('about');
 });*/
 Route::get('about','loginController@showLoginCheck' );
+Route::get('question','QuesController@showLoginCk');
 
 Route::get('logout',"loginController@logout");
 Route::get('checkid','DFController@CheckLID');
