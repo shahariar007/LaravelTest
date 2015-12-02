@@ -29,7 +29,7 @@
         <div id="navbar" class="collapse navbar-collapse">
             <ul class="nav navbar-nav">
                 <li><a href="http://localhost/test-laravel-5-project/public/work">Home</a></li>
-                <li><a href="{{action('loginController@logout')}}">Logout</a> </li>
+                <li><a href="{{action('loginController@logout')}}">Logout</a></li>
             </ul>
         </div>
         <!--/.nav-collapse -->
@@ -40,6 +40,67 @@
 <div class="container">
     @yield('content')
 </div>
+
+<div align="center" style="padding-top:50px; height:1000px">
+    <h1>Questions And Answer</h1>
+
+    <select class="locationset" id="locaid">
+        <option value="">Select Location</option>
+        <?php if ($location == null)
+            return "please enter" ?>
+        @foreach($location as $p)
+            <option value='{{$p}}'>{{$p}}</option>
+        @endforeach
+    </select>
+    <table class="datashow"style="border-collapse:separate;border-spacing: 0 0.5em;text-align: center; padding-left: 20px">
+        <tr align="center">
+            <td width="40px" scope="col"><strong>No:</strong></td>
+            <td width="380px" scope="col"><strong>Question</strong></td>
+            <td width="160px" align="center" scope="col"><strong>Option A</strong></td>
+            <td width="160px" align="center" scope="col"><strong>Option B</strong></td>
+            <td width="160px" align="center" scope="col"><strong>Option C</strong></td>
+            <td width="160px" align="center" scope="col"><strong>Option D</strong></td>
+            <td width="120px" align="center" scope="col"><strong>Correct Answer</strong></td>
+        </tr>
+        <tbody id="loadlid">
+
+        </tbody>
+
+    </table>
+
+</div>
 <!-- /.container -->
+
+<script>
+    $('.locationset').change(function (e) {
+
+        $.ajax({
+            type: "get",
+            url: "{{action('QuesController@Getalldata')}}",
+            data: {
+                locid: $('#locaid').val()
+            },
+
+            success: function (response) {
+                var trHTML = '';
+                console.log(response);
+                response.forEach(function (item,i) {
+
+                    trHTML += '<tr><td>' + (i+1) + '</td><td>' + item.question + '</td>';
+                    item.option.forEach(function (option,i) {
+                        trHTML += '<td>'+option+'</td>'
+                    })
+                    trHTML += '<td>'+item.answer+'</td></tr>'
+                });
+                $('#loadlid').html(trHTML);
+            }
+
+
+        })
+
+    });
+
+
+</script>
 </body>
 </html>

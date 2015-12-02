@@ -28,6 +28,7 @@ Route::get('question','QuesController@showLoginCk');
 Route::get('logout',"loginController@logout");
 Route::get('checkid','DFController@CheckLID');
 Route::get('qinserttest','DFController@QInsert');
+Route::any('questionsetshow','QuesController@Getalldata');
 
 Route::get('work',array('as'=>'work',function () {
     return View::make('work');
