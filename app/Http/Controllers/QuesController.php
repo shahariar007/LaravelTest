@@ -10,6 +10,8 @@ use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\App;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Input;
+use Illuminate\Support\Facades\Route;
+use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\View;
 
 class QuesController extends Controller
@@ -26,9 +28,10 @@ class QuesController extends Controller
 
     function showLoginCk()
     {
-
+        Session::put('current_url',Route::getCurrentRoute()->getPath());
         if ((Auth::check()) == false) {
             return View::make('login');
+
         } else {
             return View::make('alldata')->with('location',$this->locationID());
             //return $this->Getalldata();
@@ -42,8 +45,20 @@ class QuesController extends Controller
 
     function locationID()
     {
+
         $alllocation = Qmodel::all()->pluck('location_id');
-        return $alllocation;
+        return json_decode($alllocation);
+
+    }
+    function Delete()
+    {
+        $id=Input::get('locid');
+        if($id!=null)
+        {
+            $deletelocation = Qmodel::where('location_id','like',$id)->delete();
+            return $deletelocation;
+        }else return "id not valid";
+
 
     }
     function Getalldata()

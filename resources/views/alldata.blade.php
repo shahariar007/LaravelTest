@@ -8,6 +8,7 @@
 
     {!! Html::script('js/jquery.min.js') !!}
     {!! Html::script('js/bootstrap.min.js') !!}--}}
+    {{--<link rel="stylesheet" href="{{asset('css/css/bootstrap.min.css')}}">--}}
     <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
     <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
@@ -29,6 +30,7 @@
         <div id="navbar" class="collapse navbar-collapse">
             <ul class="nav navbar-nav">
                 <li><a href="http://localhost/test-laravel-5-project/public/work">Home</a></li>
+                <li><a href="{{action('loginController@addloginC')}}">Add Question</a></li>
                 <li><a href="{{action('loginController@logout')}}">Logout</a></li>
             </ul>
         </div>
@@ -46,13 +48,16 @@
 
     <select class="locationset" id="locaid">
         <option value="">Select Location</option>
-        <?php if ($location == null)
-            return "please enter" ?>
         @foreach($location as $p)
             <option value='{{$p}}'>{{$p}}</option>
         @endforeach
     </select>
-    <table class="datashow"style="border-collapse:separate;border-spacing: 0 0.5em;text-align: center; padding-left: 20px">
+    <input type="button" id="edit" value="edit">
+    <input type="button" id="delete" value="Delete">
+
+    <p id="confrm"></p>
+    <table class="datashow"
+           style="border-collapse:separate;border-spacing: 0 0.5em;text-align: center; padding-left: 20px">
         <tr align="center">
             <td width="40px" scope="col"><strong>No:</strong></td>
             <td width="380px" scope="col"><strong>Question</strong></td>
@@ -72,6 +77,39 @@
 <!-- /.container -->
 
 <script>
+
+    $('#delete').click(function (e) {
+        $.ajax({
+            type: "get",
+            url: "{{action('QuesController@Delete')}}",
+            data: {
+                locid: $('#locaid').val()
+            },
+
+            success: function (response) {
+                if(response==1)
+                {
+                    $(document).ready(function () {
+                        $('#confrm').text("Location id Delete Successfully");
+                        $('.locationset :selected').remove();
+                        $('#loadlid').empty();
+
+                    })
+                }
+                else if(response==0)
+                {
+                    $(document).ready(function () {
+                        $('#confrm').text("id already deleted");
+
+                    })
+
+                }
+            }
+        })
+
+    });
+</script>
+<script>
     $('.locationset').change(function (e) {
 
         $.ajax({
@@ -84,13 +122,13 @@
             success: function (response) {
                 var trHTML = '';
                 console.log(response);
-                response.forEach(function (item,i) {
+                response.forEach(function (item, i) {
 
-                    trHTML += '<tr><td>' + (i+1) + '</td><td>' + item.question + '</td>';
-                    item.option.forEach(function (option,i) {
-                        trHTML += '<td>'+option+'</td>'
+                    trHTML += '<tr><td>' + (i + 1) + '</td><td>' + item.question + '</td>';
+                    item.option.forEach(function (option, i) {
+                        trHTML += '<td>' + option + '</td>'
                     })
-                    trHTML += '<td>'+item.answer+'</td></tr>'
+                    trHTML += '<td>' + item.answer + '</td></tr>'
                 });
                 $('#loadlid').html(trHTML);
             }
@@ -99,8 +137,6 @@
         })
 
     });
-
-
 </script>
 </body>
 </html>

@@ -40,7 +40,7 @@
         <form action="{{action('TestController@store')}}" method="post">
                 {{csrf_field()}}
                 <table align="center" >
-                        <tr align="center"> Registration </tr>
+                        <tr align="center"> Signup </tr>
                         <tr >
                                 <td style="padding-bottom:10px" >Email:</td>
                                 <td style="padding-bottom:10px"><input name="user_email" type="text" /></td>

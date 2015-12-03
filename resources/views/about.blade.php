@@ -93,7 +93,7 @@
                 console.log(response);
                 if (response == 1) {
                     $(document).ready(function () {
-                        $('#idcheck').text("Already Exist");
+                        $('#idcheck').text("Location Exist ");
                     });
                 }
                 else {

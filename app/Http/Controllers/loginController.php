@@ -10,17 +10,29 @@ use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Input;
 use Illuminate\Support\Facades\Redirect;
+use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\View;
 
 class loginController extends Controller
 {
+    function addloginC()
+    {
+
+        if ((Auth::check()) == false) {
+            return View::make('login');
+        } else return View::make('about');
+        if (Auth::viaRemember()) {
+            return View::make('login');
+            //return Redirect::to('/about');
+        }
+
+    }
     function showLoginCheck()
     {
 
         if ((Auth::check()) == false) {
             return View::make('login');
-        }
-        else return View::make('about');
+        } else return View::make('about');
         if (Auth::viaRemember()) {
             return View::make('login');
             //return Redirect::to('/about');
@@ -32,7 +44,7 @@ class loginController extends Controller
     {
         if (Auth::check()) {
             return View::make('about');
-           // return Redirect::to('/about');
+            // return Redirect::to('/about');
         }
         if (Auth::viaRemember()) {
             return View::make('about');
@@ -52,6 +64,13 @@ class loginController extends Controller
 
 
         if (Auth::attempt($cred, $Remember = true)) {
+
+            if (Session::has('current_url')) {
+                Session::flush();
+               // Session::forget('current_url');
+                //$r = Session::get('current_url');
+                return Redirect::to('question');
+            }
             return View::make('about');
             //return Redirect::to('/about');
         } else {
@@ -64,6 +83,7 @@ class loginController extends Controller
     function  logout()
     {
         Auth::logout();
+        Session::flush();
         return Redirect::to('/work');
     }
 

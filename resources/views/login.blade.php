@@ -1,3 +1,4 @@
+
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
         "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
@@ -9,6 +10,7 @@
     <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
 </head>
 <body>
+
 <head>
     <nav class="navbar navbar-default navbar-fixed-top">
         <div class="container">
@@ -25,7 +27,7 @@
             <div id="navbar" class="collapse navbar-collapse">
                 <ul class="nav navbar-nav">
                     <li><a href="http://localhost/test-laravel-5-project/public/work">Home</a></li>
-                    <li><a href="http://localhost/test-laravel-5-project/public/registration">Registration</a></li>
+                    <li><a href="http://localhost/test-laravel-5-project/public/registration">Sign up</a></li>
                 </ul>
             </div>
             <!--/.nav-collapse -->
@@ -35,7 +37,6 @@
 
 
 <div style="text-align:center;min-height:800px;max-width:1500px;padding-top:100px">
-
     <form action="{{action('loginController@login')}}" method="post">
         {{csrf_field()}}
         <table align="center">
