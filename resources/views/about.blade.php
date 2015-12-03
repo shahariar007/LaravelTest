@@ -110,47 +110,53 @@
 
 </script>
 <script>
+
     $(document).ready(function () {
         $('#qinsert').click(function (e) {
             e.preventDefault();
             e.stopPropagation();
-            $.ajax({
-                type: "get",
-                url: "{{action('DFController@QInsert')}}",
-                data: {
-                    Locationid: $('#location_id').val(),
-                    Questionset: getQuestion($('.q1')),
-                    Questionop: [getOptions($('.a1')), getOptions($('.a2')), getOptions($('.a3')), getOptions($('.a4'))],
-                    CurrectAns: getAnswar($('.c1'))
-                },
+            if ($.trim(($('#location_id').val().length))==0)
+            {
+              alert("location ID cant be null")
+            }else {
+                $.ajax({
+                    type: "get",
+                    url: "{{action('DFController@QInsert')}}",
+                    data: {
+                        Locationid: $('#location_id').val(),
+                        Questionset: getQuestion($('.q1')),
+                        Questionop: [getOptions($('.a1')), getOptions($('.a2')), getOptions($('.a3')), getOptions($('.a4'))],
+                        CurrectAns: getAnswar($('.c1'))
+                    },
 
-                success: function (response) {
-                    console.log(response);
-                    if (response == 1) {
-                        $(document).ready(function () {
-                            $('#insertNotification').text("Data Successfully Save");
-                            $('.q1').val("");
-                            $('.a1').val("");
-                            $('.a2').val("");
-                            $('.a3').val("");
-                            $('.a4').val("");
-                            $('.c1').val("");
-                            $('#location_id').val("");
+                    success: function (response) {
+                        console.log(response);
+                        if (response == 1) {
+                            $(document).ready(function () {
+                                $('#insertNotification').text("Data Successfully Save");
+                                $('.q1').val("");
+                                $('.a1').val("");
+                                $('.a2').val("");
+                                $('.a3').val("");
+                                $('.a4').val("");
+                                $('.c1').val("");
+                                $('#location_id').val("");
 
-                           //location.reload(true);
-                        });
+                                //location.reload(true);
+                            });
+                        }
+                        else {
+                            $(document).ready(function () {
+                                $('#insertNotification').text(response);
+                            });
+
+                        }
+
+
                     }
-                    else {
-                        $(document).ready(function () {
-                            $('#insertNotification').text(response);
-                        });
 
-                    }
-
-
-                }
-
-            })
+                })
+            }
         });
         function getOptions(option) {
             var o = [];

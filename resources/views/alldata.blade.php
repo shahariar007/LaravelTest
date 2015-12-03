@@ -44,7 +44,7 @@
 </div>
 
 <div align="center" style="padding-top:50px; height:1000px">
-    <h1>Questions And Answer</h1>
+    <h1>Questions And Answers</h1>
 
     <select class="locationset" id="locaid">
         <option value="">Select Location</option>
@@ -96,14 +96,7 @@
 
                     })
                 }
-                else if(response==0)
-                {
-                    $(document).ready(function () {
-                        $('#confrm').text("id already deleted");
 
-                    })
-
-                }
             }
         })
 
