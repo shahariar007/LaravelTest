@@ -33,8 +33,9 @@ Route::get('login', 'loginController@showLoginView');
 Route::post('store','TestController@store' );
 Route::post('vialogin','loginController@login');
 //external php
-Route::get('checklogin/{email}/{pass}/{type}','UserLoginController@LoginTest');
+Route::get('checklogin/{email}/{pass}','UserLoginController@LoginTest');
 Route::get('Appregistration/{name}/{mail}/{phone}/{pass}/{type}','AppRegistrationController@RegistrationProcess');
+Route::get('manualVerification/{mail}/{code}','VerifyController@Verification');
 
 
 

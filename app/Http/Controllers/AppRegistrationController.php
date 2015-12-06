@@ -20,7 +20,7 @@ class AppRegistrationController extends Controller
         $ur_mobile = Input::get('mobile_no');
         $ur_pass = Input::get('password');
         $ur_type = Input::get('reg_type');*/
-        $user_email = $user_mail . "*" . $user_type;
+        $user_email = $user_mail ."*".$user_type;
         $maintablecheckreg = UserLoginModel::where('user_email', '=', $user_email)->exists();
         $temptablecheck = UserRegistrationModel::where('user_email', '=', $user_email)->where('user_validation_status', '=', 0)->pluck('id');
         if ($maintablecheckreg || $temptablecheck > 0) {
@@ -51,30 +51,33 @@ class AppRegistrationController extends Controller
                 $insert->user_name = $user_name;
                 $insert->user_email = $user_email;
                 $insert->user_phone = $user_phone;
-                $insert->password = Hash::make($user_password);
+                $insert->password =$user_password;
                 $insert->user_type = $user_type;
                 $insert->start_time = $start_time;
                 $insert->end_time = $end_time;
                 $insert->user_validation_status = $user_validation_status;
                 $insert->user_active_status = $user_active_status;
                 $insert->user_code = $generated_code;
-                if ($insert->save()) {
+                try {
+                    $insert->save();
                     $this->MailTransfer($user_mail, $user_name, $generated_code);
                     return "request for verify";
-                } else "";//------------------------------------------------------error print
+                } catch (\Illuminate\Database\QueryException $e) {
+                    $this->command->error("SQL Error: " . $e->getMessage() . "\n");
+                }
+
 
                 /*if ($result) {
                     $n = new Connection();
                     $n->MailTransfer($user_email, $user_name, $generated_code);
                     return "request for verify";
                 } else echo $this->db_helper->error;*/
-            } elseif (strcasecmp($user_type, "facebook") == 0 || strcasecmp($user_type, "google_plus") == 0 || strcasecmp($user_type, "twitter") == 0)
-            {
+            } elseif (strcasecmp($user_type, "facebook")== 0|| strcasecmp($user_type, "google_plus") == 0 || strcasecmp($user_type, "twitter") == 0) {
                 $sinsert = new UserLoginModel();
                 $sinsert->user_name = $user_name;
                 $sinsert->user_email = $user_email;
                 $sinsert->user_phone = $user_phone;
-                $sinsert->password = Hash::make($user_password);
+                $sinsert->password = $user_password;//Hash::make($user_password);
                 $sinsert->user_type = $user_type;
                 if ($sinsert->save()) {
                     $this->update_status($user_email);
@@ -94,7 +97,6 @@ class AppRegistrationController extends Controller
         $mail = new \PHPMailer();
         $mail->IsSMTP();
         $mail->SMTPAuth = true;
-
         $mail->Host = "smtp.gmail.com";
         $mail->Port = 465;
         $mail->Username = "shuvo11101010@gmail.com";
