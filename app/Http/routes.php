@@ -18,26 +18,25 @@ Route::get('/', function () {
 Route::get('registration', function () {
     return View::make('registration');
 });
-/*Route::get('about',function()
-{
-    return View::make('about');
-});*/
 Route::get('about','loginController@showLoginCheck' );
 Route::get('question','QuesController@showLoginCk');
-
 Route::get('logout',"loginController@logout");
 Route::get('log',"loginController@addloginC");
 Route::get('checkid','DFController@CheckLID');
 Route::get('qinserttest','DFController@QInsert');
 Route::get('delete','QuesController@Delete');
 Route::any('questionsetshow','QuesController@Getalldata');
-
 Route::get('work',array('as'=>'work',function () {
     return View::make('work');
 }));
 Route::get('login', 'loginController@showLoginView');
 Route::post('store','TestController@store' );
 Route::post('vialogin','loginController@login');
+//external php
+Route::get('checklogin/{email}/{pass}/{type}','UserLoginController@LoginTest');
+Route::get('Appregistration/{name}/{mail}/{phone}/{pass}/{type}','AppRegistrationController@RegistrationProcess');
+
+
 
 
 
