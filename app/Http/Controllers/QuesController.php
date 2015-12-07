@@ -69,6 +69,14 @@ class QuesController extends Controller
         return json_decode($alldata);
 
     }
+    function AppQuestion($locationset)
+    {
+        //$locationset=Input::get('locid');
+        //return $locationset;
+        $alldata = Qmodel::where('location_id','LIKE',$locationset)->pluck('options');
+        return json_decode($alldata);
+
+    }
 
     /**
      * Show the form for creating a new resource.

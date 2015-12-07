@@ -30,7 +30,7 @@
             <ul class="nav navbar-nav">
                 <li><a href="http://localhost/test-laravel-5-project/public/work">Home</a></li>
                 <li><a href="{{action('QuesController@showLoginCk')}}">Question</a></li>
-                <li><a href="http://localhost/test-laravel-5-project/public/login">Login</a> </li>
+                <li><a href="@if(Auth::check()) {{URL::to('logout')}} @else {{URL::to('login')}} @endif">@if(Auth::check())Logout @else Login @endif</a> </li>
                 <li><a href="http://localhost/test-laravel-5-project/public/registration">Sign up</a> </li>
 
             </ul>

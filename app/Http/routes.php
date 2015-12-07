@@ -36,6 +36,7 @@ Route::post('vialogin','loginController@login');
 Route::get('checklogin/{email}/{pass}','UserLoginController@LoginTest');
 Route::get('Appregistration/{name}/{mail}/{phone}/{pass}/{type}','AppRegistrationController@RegistrationProcess');
 Route::get('manualVerification/{mail}/{code}','VerifyController@Verification');
+Route::get('AppQuestion/{id}','QuesController@AppQuestion');
 
 
 

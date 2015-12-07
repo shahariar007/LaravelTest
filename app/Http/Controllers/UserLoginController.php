@@ -50,7 +50,7 @@ class UserLoginController extends Controller
     }
     public function update_status($email)
     {
-        $updateLoginStatus=UserLoginModel::where('user_email', '=', $email)->update(['user_active_status'=>1]);
+        UserLoginModel::where('user_email', '=', $email)->update(['user_active_status'=>1]);
 
     }
 
