@@ -20,24 +20,25 @@ use Psy\Exception\Exception;
 class UserLoginController extends Controller
 {
 
-    public function LoginTest($emails, $password)
+    public function LoginTest()
     {
 
-        /*$email=Input::get('email');
-        $password=Input::get('password');
-        $user_type=Input::get('reg_type');*/
-        $email=$emails."*manual";
+        $email = Input::get('email');
+        $password = Input::get('password');
+        $email = $email . "*manual";
         $login_json = array();
         $registercheck = UserLoginModel::where('user_email', '=', $email)->exists();
-        //print_r($registercheck);die();
-        if ($registercheck){
-         $pass=md5($password);
-            $login=UserLoginModel::where('user_email', '=', $email)->where('password', '=',$pass)->exists();
+        if ($registercheck) {
+            $pass = md5($password);
+            $login = UserLoginModel::where('user_email', '=', $email)->where('password', '=', $pass)->exists();
 
             if ($login) {
                 $this->update_status($email);
                 $logincheck = UserLoginModel::where('user_email', '=', $email)->first();
-                $login_json['LoginResult'] = ['status' => "success", 'data' => ['id' => $logincheck->id, 'user_name' => $logincheck->user_name, 'user_email' => $logincheck->user_email, 'user_phone' => $logincheck->user_phone, 'user_type' => $logincheck->user_type]];
+                //----------------------------------------------------------------
+                $cus_email=explode('*',$logincheck->user_email,-1);
+
+                $login_json['LoginResult'] = ['status' => "success", 'data' => ['id' => $logincheck->id, 'user_name' => $logincheck->user_name, 'user_email' => $cus_email[0], 'user_phone' => $logincheck->user_phone, 'user_type' => $logincheck->user_type]];
                 return json_encode($login_json);
             } else {
                 $login_json['LoginResult'] = ['status' => "fail", 'data' => 'password does not match'];
@@ -48,10 +49,10 @@ class UserLoginController extends Controller
             return json_encode($login_json);
         }
     }
+
     public function update_status($email)
     {
-        UserLoginModel::where('user_email', '=', $email)->update(['user_active_status'=>1]);
-
+        UserLoginModel::where('user_email', '=', $email)->update(['user_active_status' => 1]);
     }
 
 

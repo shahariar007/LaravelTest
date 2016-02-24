@@ -19,8 +19,16 @@ use Illuminate\Support\Facades\View;
 
 class VerifyController extends Controller
 {
-    public function Verification($mailaddress, $mailcode)
+    public function Verification()
     {
+
+        $mailaddress=Input::get('email');
+        if(Input::has('code'))
+        {
+            $mailcode=Input::has('code');
+        }
+        else return "code field is blanck";
+
 
         $user_email = $mailaddress."*manual";
         //----------------------------------------------------------------------------code edit
@@ -60,8 +68,8 @@ class VerifyController extends Controller
                 $registration_result['VerificationResult'] = ['Status' => 'Fail', 'data' => 'Verification Code Does Not Match'];
                 return json_encode($registration_result);
             }
-        } else "email address not registered";
-        return "";
+        } else return "email address not registered";
+
     }
     public function update_status($email)
     {

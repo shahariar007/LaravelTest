@@ -11,6 +11,8 @@
 |
 */
 
+use Illuminate\Support\Facades\View;
+
 Route::get('/', function () {
     return View::make('Home');
 
@@ -18,25 +20,27 @@ Route::get('/', function () {
 Route::get('registration', function () {
     return View::make('registration');
 });
-Route::get('about','loginController@showLoginCheck' );
-Route::get('question','QuesController@showLoginCk');
-Route::get('logout',"loginController@logout");
-Route::get('log',"loginController@addloginC");
-Route::get('checkid','DFController@CheckLID');
-Route::get('qinserttest','DFController@QInsert');
-Route::get('delete','QuesController@Delete');
-Route::any('questionsetshow','QuesController@Getalldata');
-Route::get('work',array('as'=>'work',function () {
+Route::get('about', 'loginController@showLoginCheck');
+Route::get('question', 'QuesController@showLoginCk');
+Route::get('logout', "loginController@logout");
+Route::get('log', "loginController@addloginC");
+Route::get('checkid', 'DFController@CheckLID');
+Route::get('qinserttest', 'DFController@QInsert');
+Route::get('delete', 'QuesController@Delete');
+Route::any('questionsetshow', 'QuesController@Getalldata');
+Route::get('work', array('as' => 'work', function () {
     return View::make('work');
 }));
 Route::get('login', 'loginController@showLoginView');
-Route::post('store','TestController@store' );
-Route::post('vialogin','loginController@login');
+Route::post('store', 'TestController@store');
+Route::post('vialogin', 'loginController@login');
 //external php
-Route::get('checklogin/{email}/{pass}','UserLoginController@LoginTest');
-Route::get('Appregistration/{name}/{mail}/{phone}/{pass}/{type}','AppRegistrationController@RegistrationProcess');
-Route::get('manualVerification/{mail}/{code}','VerifyController@Verification');
-Route::get('AppQuestion/{id}','QuesController@AppQuestion');
+Route::post('login', 'UserLoginController@LoginTest');
+Route::post('registration', 'AppRegistrationController@RegistrationProcess');
+Route::post('verification', 'VerifyController@Verification');
+Route::get('AppQuestion/{id}', 'QuesController@AppQuestion');
+Route::post('authentication', 'QuesController@Authentication');
+
 
 
 

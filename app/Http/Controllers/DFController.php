@@ -79,7 +79,7 @@ class DFController extends Controller
         try{
             $Qinsert->save();
             return 1;
-        }catch (Exception $e) {
+        }catch (\Exception $e) {
             return $e->errorInfo;
         }
        // $Qinsert->save();

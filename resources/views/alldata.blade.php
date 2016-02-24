@@ -3,15 +3,10 @@
 <head>
     <title>@yield('title')</title>
 
-    {{--{!! Html::style('css/app.css') !!}
-    {!! Html::style('css/style.css') !!}
+    <link rel="stylesheet" href="{{URL::asset('assets/css/bootstrap.min.css')}}">
+    <script rel="script" src="{{URL::asset('assets/js/jquery.min.js')}}"></script>
+    <script rel="script" src="{{URL::asset('assets/js/bootstrap.min.js')}}"></script>
 
-    {!! Html::script('js/jquery.min.js') !!}
-    {!! Html::script('js/bootstrap.min.js') !!}--}}
-    {{--<link rel="stylesheet" href="{{asset('css/css/bootstrap.min.css')}}">--}}
-    <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
-    <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
 
 </head>
 
@@ -87,8 +82,7 @@
             },
 
             success: function (response) {
-                if(response==1)
-                {
+                if (response == 1) {
                     $(document).ready(function () {
                         $('#confrm').text("Location id Delete Successfully");
                         $('.locationset :selected').remove();
@@ -131,5 +125,6 @@
 
     });
 </script>
+
 </body>
 </html>

@@ -4,9 +4,18 @@
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
     <title>|->Wc to Login<-|</title>
-    <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
-    <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="{{URL::asset('assets/css/bootstrap.min.css')}}">
+    <script rel="script" src="{{URL::asset('assets/js/jquery.min.js')}}"></script>
+    <script rel="script" src="{{URL::asset('assets/js/bootstrap.min.js')}}"></script>
+    <script rel="script" src="{{URL::asset('ssplug/jquery.form.js')}}"></script>
+
+    <script>
+        $.ajaxSetup({
+            headers: {
+                'X-CSRF-TOKEN': '{{csrf_token()}}'
+            }
+        })
+    </script>
 </head>
 <body>
 <head>
@@ -39,8 +48,16 @@
 <div align="center" style="padding-top:50px; height:1000px">
     <h1 align="center"> Enter Question and Answer</h1>
 
+    <div>
+        <p>excl file Import</p>
 
-    <form action="{{action('DFController@QInsert')}}" id="qform" method="post">
+        <form action="{{action('ExcelFileController@upload')}}" method="post" role="form" id="excelfile">
+            <input type="file" name="exclfile" id="excel_file"/>
+            <input type="submit" name="submit" class="btn-primary btn " id="file"/>
+        </form>
+    </div>
+
+    <form action="{{action('DFController@QInsert')}}" id="qform" method="post" style="margin-top: 10px">
         <div style="margin-bottom:15px"><input name="location_id" id="location_id" type="text"
                                                placeholder="Location Id"/></div>
         <p id="idcheck" style="color: #880000"></p>
@@ -68,10 +85,10 @@
                 <td><input class="a3" type="text" size="17px"/></td>
                 <td><input class="a4" type="text" size="17px"/></td>
                 <td align="center"><select class="c1">
-                        <option value="1">Answer A</option>
-                        <option value="2">Answer B</option>
-                        <option value="3">Answer C</option>
-                        <option value="4">Answer D</option>
+                        <option value="a1">Answer A</option>
+                        <option value="a2">Answer B</option>
+                        <option value="a3">Answer C</option>
+                        <option value="a4">Answer D</option>
                     </select></td>
             </tr>
         </table>
@@ -115,10 +132,9 @@
         $('#qinsert').click(function (e) {
             e.preventDefault();
             e.stopPropagation();
-            if ($.trim(($('#location_id').val().length))==0)
-            {
-              alert("location ID cant be null")
-            }else {
+            if ($.trim(($('#location_id').val().length)) == 0) {
+                alert("location ID can't be null")
+            } else {
                 $.ajax({
                     type: "get",
                     url: "{{action('DFController@QInsert')}}",
@@ -177,7 +193,7 @@
         function getAnswar(option) {
             var o = [];
             option.each(function (i) {
-                o.push($(this).val())
+                o.push(document.getElementsByClassName($(this).val()).item(i).value)
             })
             return o;
         }
@@ -189,7 +205,7 @@
     var i = 2;
     $('.addbuttoncls').click(function () {
 
-        $(".rowadd").append('<tr style="padding-bottom:5px"><td align="center" valign="middle">' + (i++) + '</td><td ><textarea class="q1"cols="50" rows="1"></textarea></td><td><input class="a1" type="text" size="17px"/></td><td><input class="a2" type="text" size="17px"/></td><td><input class="a3" type="text" size="17px"/></td><td><input class="a4" type="text" size="17px"/></td><td align="center"><select class="c1" ><option value="1">Answer A</option><option value="2">Answer B</option><option value="3">Answer C</option><option value="4">Answer D</option></select></td></tr>');
+        $(".rowadd").append('<tr style="padding-bottom:5px"><td align="center" valign="middle">' + ($(".rowadd tr").length) + '</td><td ><textarea class="q1"cols="50" rows="1"></textarea></td><td><input class="a1" type="text" size="17px"/></td><td><input class="a2" type="text" size="17px"/></td><td><input class="a3" type="text" size="17px"/></td><td><input class="a4" type="text" size="17px"/></td><td align="center"><select class="c1" ><option value="a1">Answer A</option><option value="a2">Answer B</option><option value="a3">Answer C</option><option value="a4">Answer D</option></select></td><td><input name="removebutton" value="Remove" type="button" class="thisremovebuttoncls"/></td></tr>');
     });
     $('.removebuttoncls').click(function () {
         if ($(".rowadd tr").length != 2) {
@@ -201,10 +217,24 @@
         }
 
     });
+    $(document).on('click', '.thisremovebuttoncls', function (e) {
+        $(this).parents('tr').remove();
+    });
 </script>
-{{--<footer style="text-align:center; position:relative">
-    <p> Copyright@2015</p>
-</footer>--}}
 
+<script>
+    $(document).ready(function (e) {
+        $('#excelfile').ajaxForm({
+            success: function (r) {
+                alert(r);
+                console.log(r)
+            },
+            error: function (d) {
+                document.write(d.responseText)
+            }
+        })
+    })
+
+</script>
 </body>
 </html>

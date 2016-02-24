@@ -28,119 +28,59 @@ class QuesController extends Controller
 
     function showLoginCk()
     {
-        Session::put('current_url',Route::getCurrentRoute()->getPath());
+        Session::put('current_url', Route::getCurrentRoute()->getPath());
         if ((Auth::check()) == false) {
             return View::make('login');
 
         } else {
-            return View::make('alldata')->with('location',$this->locationID());
+            return View::make('alldata')->with('location', $this->locationID());
             //return $this->Getalldata();
         }
 
         if (Auth::viaRemember()) {
-            return View::make('alldata')->with('location',$this->locationID());
-            //return Redirect::to('/about');
+            return View::make('alldata')->with('location', $this->locationID());
         }
     }
 
     function locationID()
     {
-
         $alllocation = Qmodel::all()->pluck('location_id');
         return json_decode($alllocation);
-
     }
+
     function Delete()
     {
-        $id=Input::get('locid');
-        if($id!=null)
-        {
-            $deletelocation = Qmodel::where('location_id','like',$id)->delete();
+        $id = Input::get('locid');
+        if ($id != null) {
+            $deletelocation = Qmodel::where('location_id', 'like', $id)->delete();
             return $deletelocation;
-        }else return "id not valid";
+        } else return "id not valid";
 
 
     }
+
     function Getalldata()
     {
-        $locationset=Input::get('locid');
+        $locationset = Input::get('locid');
         //return $locationset;
-        $alldata = Qmodel::where('location_id','LIKE',$locationset)->pluck('options');
+        $alldata = Qmodel::where('location_id', 'LIKE', $locationset)->pluck('options');
         return json_decode($alldata);
 
     }
+
     function AppQuestion($locationset)
     {
         //$locationset=Input::get('locid');
         //return $locationset;
-        $alldata = Qmodel::where('location_id','LIKE',$locationset)->pluck('options');
+        $alldata = Qmodel::where('location_id', 'LIKE', $locationset)->pluck('options');
         return json_decode($alldata);
 
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
+    public function Authentication()
     {
-        //
-    }
+        $user_id=Input::get('user_id');
+        $location=Input::get('location');
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(Request $request)
-    {
-        //
-    }
-
-    /**
-     * Display the specified resource.
-     *
-     * @param  int $id
-     * @return \Illuminate\Http\Response
-     */
-    public function show($id)
-    {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int $id
-     * @return \Illuminate\Http\Response
-     */
-    public function edit($id)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request $request
-     * @param  int $id
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, $id)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int $id
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy($id)
-    {
-        //
     }
 }
