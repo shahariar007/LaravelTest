@@ -2,7 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\models\LocationAuthorizationModel;
 use App\models\Qmodel;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 
 use App\Http\Requests;
@@ -79,8 +81,12 @@ class QuesController extends Controller
 
     public function Authentication()
     {
-        $user_id=Input::get('user_id');
-        $location=Input::get('location');
+        $user_id = Input::get('user_id');
+        $location = Input::get('location');
+        $insert = new LocationAuthorizationModel();
+        $insert->user_id = $user_id;
+        $insert->location = $location;
+
 
     }
 }

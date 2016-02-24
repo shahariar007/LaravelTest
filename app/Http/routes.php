@@ -39,6 +39,7 @@ Route::post('login', 'UserLoginController@LoginTest');
 Route::post('registration', 'AppRegistrationController@RegistrationProcess');
 Route::post('verification', 'VerifyController@Verification');
 Route::get('AppQuestion/{id}', 'QuesController@AppQuestion');
+Route::post('dd','ExcelFileController@upload');
 Route::post('authentication', 'QuesController@Authentication');
 
 
