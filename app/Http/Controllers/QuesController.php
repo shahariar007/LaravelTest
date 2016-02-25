@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\models\SpecialDate;
+use App\models\UserLoginModel;
 use Request;
 use Response;
 use App\models\LocationAuthorizationModel;
@@ -68,9 +69,8 @@ class QuesController extends Controller
 
     public function Authentication()
     {
-
         $user_id = Input::get('user_id');
-
+        UserLoginModel::where('id','=',$user_id)->exists();
         $location = Input::get('location');
         $nowDateod = Carbon::now('Asia/Dhaka');
         $nowDate = $nowDateod->toDateString();
@@ -79,18 +79,24 @@ class QuesController extends Controller
 
         $check = LocationAuthorizationModel::where('user_id', '=', $user_id)->where('location', '=', $location)->first();
         if ($check) {
+            $onePlay = SpecialDate::where('id', '=', $check->special_id_date)->exists();
             $res_date = $check->quiz_res_date;
             $special = $this->specialdate($location, $nowDate, $user_id, $postDate);
             if (($nowDate > $res_date) || $special) {
+                if ($onePlay) return Response::json(array('status' => 'fail'));
                 return Response::json(array('status' => 'success'));
             } else
                 return Response::json(array('status' => 'fail'));
         } else {
+            $checkdate = SpecialDate::whereDate('date', '=', $nowDate)->where('location', '=', $location)->first();
             $insert = new LocationAuthorizationModel();
             $insert->user_id = $user_id;
             $insert->location = $location;
             $insert->quiz_play_date = $nowDate;
             $insert->quiz_res_date = $postDate;
+            if ($checkdate) {
+                $insert->special_id_date = $checkdate->id;
+            }
             if ($insert->save()) {
                 return Response::json(array('status' => 'success'));
             }
@@ -104,14 +110,12 @@ class QuesController extends Controller
         $specialdate = SpecialDate::where('location', '=', $location)->whereDate('date', '=', $nowDate)->first();
 
         if ($specialdate) {
-
-            $asd = LocationAuthorizationModel::where('user_id', '=', $user_id)->where('location', '=', $location)->update(array('quiz_play_date' => $nowDate, 'quiz_res_date' => $postDate));
+            $asd = LocationAuthorizationModel::where('user_id', '=', $user_id)->where('location', '=', $location)->update(array('quiz_play_date' => $nowDate, 'quiz_res_date' => $postDate, 'special_id_date' => $specialdate->id));
             if ($asd) {
                 return true;
             } else {
                 return false;
             }
-
         } else return false;
 
     }

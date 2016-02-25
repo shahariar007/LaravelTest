@@ -29,7 +29,8 @@ class VerifyCsrf extends VerifyCsrfToken
             'login',
             'registration',
             'verification',
-            'authentication'
+            'authentication',
+            'applogout'
         ];
 
         foreach ($routes as $route)

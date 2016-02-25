@@ -41,6 +41,7 @@ Route::post('verification', 'VerifyController@Verification');
 Route::get('AppQuestion/{id}', 'QuesController@AppQuestion');
 Route::post('dd', 'ExcelFileController@upload');
 Route::post('authentication', 'QuesController@Authentication');
+Route::post('applogout', 'UserLoginController@logout');
 
 
 

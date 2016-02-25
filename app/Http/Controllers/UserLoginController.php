@@ -2,20 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\models\Qmodel;
 use App\models\UserLoginModel;
-use Illuminate\Http\Request;
 use App\Http\Requests;
-use App\Http\Controllers\Controller;
-use Illuminate\Support\Facades\App;
-use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\DB;
-use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Input;
-use Illuminate\Support\Facades\Route;
-use Illuminate\Support\Facades\Session;
-use Illuminate\Support\Facades\View;
-use Psy\Exception\Exception;
+use Response;
 
 class UserLoginController extends Controller
 {
@@ -36,7 +26,7 @@ class UserLoginController extends Controller
                 $this->update_status($email);
                 $logincheck = UserLoginModel::where('user_email', '=', $email)->first();
                 //----------------------------------------------------------------
-                $cus_email=explode('*',$logincheck->user_email,-1);
+                $cus_email = explode('*', $logincheck->user_email, -1);
 
                 $login_json['LoginResult'] = ['status' => "success", 'data' => ['id' => $logincheck->id, 'user_name' => $logincheck->user_name, 'user_email' => $cus_email[0], 'user_phone' => $logincheck->user_phone, 'user_type' => $logincheck->user_type]];
                 return json_encode($login_json);
@@ -53,6 +43,15 @@ class UserLoginController extends Controller
     public function update_status($email)
     {
         UserLoginModel::where('user_email', '=', $email)->update(['user_active_status' => 1]);
+    }
+
+    public function logout()
+    {
+        $user_id = Input::get('user_id');
+        $logout = UserLoginModel::where('id', '=', $user_id)->update(['user_active_status' => 0]);
+        if ($logout) {
+            return Response::json(array('status' => 1));
+        } else return Response::json(array('status' => 0));
     }
 
 
