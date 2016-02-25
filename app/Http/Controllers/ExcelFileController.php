@@ -27,6 +27,7 @@ class ExcelFileController extends Controller
         });
         return Response::json($s);
     }
+
     public function dj()
     {
         return "dsada";

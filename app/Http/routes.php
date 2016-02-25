@@ -25,7 +25,7 @@ Route::get('question', 'QuesController@showLoginCk');
 Route::get('logout', "loginController@logout");
 Route::get('log', "loginController@addloginC");
 Route::get('checkid', 'DFController@CheckLID');
-Route::get('qinserttest', 'DFController@QInsert');
+Route::post('qinserttest', 'DFController@QInsert');
 Route::get('delete', 'QuesController@Delete');
 Route::any('questionsetshow', 'QuesController@Getalldata');
 Route::get('work', array('as' => 'work', function () {
@@ -39,7 +39,7 @@ Route::post('login', 'UserLoginController@LoginTest');
 Route::post('registration', 'AppRegistrationController@RegistrationProcess');
 Route::post('verification', 'VerifyController@Verification');
 Route::get('AppQuestion/{id}', 'QuesController@AppQuestion');
-Route::post('dd','ExcelFileController@upload');
+Route::post('dd', 'ExcelFileController@upload');
 Route::post('authentication', 'QuesController@Authentication');
 
 

@@ -136,7 +136,7 @@
                 alert("location ID can't be null")
             } else {
                 $.ajax({
-                    type: "get",
+                    type: "post",
                     url: "{{action('DFController@QInsert')}}",
                     data: {
                         Locationid: $('#location_id').val(),

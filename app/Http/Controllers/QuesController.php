@@ -2,14 +2,13 @@
 
 namespace App\Http\Controllers;
 
+use App\models\SpecialDate;
+use Request;
+use Response;
 use App\models\LocationAuthorizationModel;
 use App\models\Qmodel;
 use Carbon\Carbon;
-use Illuminate\Http\Request;
-
 use App\Http\Requests;
-use App\Http\Controllers\Controller;
-use Illuminate\Support\Facades\App;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Input;
 use Illuminate\Support\Facades\Route;
@@ -18,15 +17,6 @@ use Illuminate\Support\Facades\View;
 
 class QuesController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function index()
-    {
-        //
-    }
 
     function showLoginCk()
     {
@@ -39,9 +29,6 @@ class QuesController extends Controller
             //return $this->Getalldata();
         }
 
-        if (Auth::viaRemember()) {
-            return View::make('alldata')->with('location', $this->locationID());
-        }
     }
 
     function locationID()
@@ -81,12 +68,51 @@ class QuesController extends Controller
 
     public function Authentication()
     {
-        $user_id = Input::get('user_id');
-        $location = Input::get('location');
-        $insert = new LocationAuthorizationModel();
-        $insert->user_id = $user_id;
-        $insert->location = $location;
 
+        $user_id = Input::get('user_id');
+
+        $location = Input::get('location');
+        $nowDateod = Carbon::now('Asia/Dhaka');
+        $nowDate = $nowDateod->toDateString();
+        $postDateob = Carbon::now()->addWeeks(1);
+        $postDate = $postDateob->toDateString();
+
+        $check = LocationAuthorizationModel::where('user_id', '=', $user_id)->where('location', '=', $location)->first();
+        if ($check) {
+            $res_date = $check->quiz_res_date;
+            $special = $this->specialdate($location, $nowDate, $user_id, $postDate);
+            if (($nowDate > $res_date) || $special) {
+                return Response::json(array('status' => 'success'));
+            } else
+                return Response::json(array('status' => 'fail'));
+        } else {
+            $insert = new LocationAuthorizationModel();
+            $insert->user_id = $user_id;
+            $insert->location = $location;
+            $insert->quiz_play_date = $nowDate;
+            $insert->quiz_res_date = $postDate;
+            if ($insert->save()) {
+                return Response::json(array('status' => 'success'));
+            }
+        }
+
+
+    }
+
+    public function specialdate($location, $nowDate, $user_id, $postDate)
+    {
+        $specialdate = SpecialDate::where('location', '=', $location)->whereDate('date', '=', $nowDate)->first();
+
+        if ($specialdate) {
+
+            $asd = LocationAuthorizationModel::where('user_id', '=', $user_id)->where('location', '=', $location)->update(array('quiz_play_date' => $nowDate, 'quiz_res_date' => $postDate));
+            if ($asd) {
+                return true;
+            } else {
+                return false;
+            }
+
+        } else return false;
 
     }
 }
