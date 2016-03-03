@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="Encoding">
-    <file url="file://$PROJECT_DIR$/app/Http/Controllers/QuesController.php" charset="UTF-8" />
-    <file url="file://$PROJECT_DIR$/app/Http/Controllers/UserLoginController.php" charset="UTF-8" />
-    <file url="file://$PROJECT_DIR$/app/Http/Controllers/VerifyController.php" charset="UTF-8" />
-    <file url="file://$PROJECT_DIR$/resources/views/alldata.blade.php" charset="UTF-8" />
+    <file url="file://C:/wamp/www/mobileMuktijuddho/app/Http/Controllers/QuesController.php" charset="UTF-8" />
+    <file url="file://C:/wamp/www/mobileMuktijuddho/app/Http/Controllers/UserLoginController.php" charset="UTF-8" />
+    <file url="file://C:/wamp/www/mobileMuktijuddho/app/Http/Controllers/VerifyController.php" charset="UTF-8" />
+    <file url="file://C:/wamp/www/mobileMuktijuddho/resources/views/alldata.blade.php" charset="UTF-8" />
   </component>
 </project>

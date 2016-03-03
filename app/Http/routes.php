@@ -38,10 +38,13 @@ Route::post('vialogin', 'loginController@login');
 Route::post('login', 'UserLoginController@LoginTest');
 Route::post('registration', 'AppRegistrationController@RegistrationProcess');
 Route::post('verification', 'VerifyController@Verification');
-Route::get('AppQuestion/{id}', 'QuesController@AppQuestion');
+Route::post('QuizQuestion', 'QuesController@AppQuestion');
 Route::post('dd', 'ExcelFileController@upload');
 Route::post('authentication', 'QuesController@Authentication');
 Route::post('applogout', 'UserLoginController@logout');
+Route::post('result', 'ResultController@result');
+Route::post('top', 'ResultController@Top');
+Route::post('forgetpass','UserLoginController@forgetPass');
 
 
 

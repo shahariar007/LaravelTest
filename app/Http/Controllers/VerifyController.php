@@ -11,6 +11,7 @@ use App\Http\Requests;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\App;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Crypt;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Input;
 use Illuminate\Support\Facades\Route;
@@ -22,15 +23,13 @@ class VerifyController extends Controller
     public function Verification()
     {
 
-        $mailaddress=Input::get('email');
-        if(Input::has('code'))
-        {
-            $mailcode=Input::has('code');
-        }
-        else return "code field is blanck";
+        $mailaddress = Input::get('email');
+        if (Input::has('code')) {
+            $mailcode = Input::has('code');
+        } else return "code field is blanck";
 
 
-        $user_email = $mailaddress."*manual";
+        $user_email = $mailaddress . "*manual";
         //----------------------------------------------------------------------------code edit
 
         $getdatabasecode = UserRegistrationModel::where('user_email', '=', $user_email)->pluck('user_code');
@@ -47,17 +46,17 @@ class VerifyController extends Controller
                     $maininsert->user_name = $tempdata->user_name;
                     $maininsert->user_email = $tempdata->user_email;
                     $maininsert->user_phone = $tempdata->user_phone;
-                    $maininsert->password = md5($tempdata->password);
+                    $maininsert->password = $tempdata->password;
                     $maininsert->user_type = $tempdata->user_type;
                     if ($maininsert->save()) {
                         $sql_delete = UserRegistrationModel::where('user_email', '=', $user_email)->delete();
                         if ($sql_delete) {
-                            $sqldata =UserLoginModel::where('user_email','=',$user_email)->first();
+                            $sqldata = UserLoginModel::where('user_email', '=', $user_email)->first();
                             $this->update_status($user_email);
                             $registration_result['VerificationResult'] = ['Status' => 'Success', 'data' => ['id' => $sqldata->id, 'user_name' => $sqldata->user_name, 'user_email' => $sqldata->user_email, 'user_phone' => $sqldata->user_phone, 'user_type' => $sqldata->user_type]];
                             return json_encode($registration_result);
                         } else {
-                            $registration_result['VerificationResult'] = ['Status' => 'Fail', 'data' =>""];
+                            $registration_result['VerificationResult'] = ['Status' => 'Fail', 'data' => ""];
                             return json_encode($registration_result);
                         }
 
@@ -71,6 +70,7 @@ class VerifyController extends Controller
         } else return "email address not registered";
 
     }
+
     public function update_status($email)
     {
         $updateLoginStatus = UserLoginModel::where('user_email', '=', $email)->update(['user_active_status' => 1]);

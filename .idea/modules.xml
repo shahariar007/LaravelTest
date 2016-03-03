@@ -2,7 +2,7 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/.idea/MobileMuktijuddho.iml" filepath="$PROJECT_DIR$/.idea/MobileMuktijuddho.iml" />
+      <module fileurl="file://C:/wamp/www/mobileMuktijuddho/.idea/MobileMuktijuddho.iml" filepath="C:/wamp/www/mobileMuktijuddho/.idea/MobileMuktijuddho.iml" />
     </modules>
   </component>
 </project>

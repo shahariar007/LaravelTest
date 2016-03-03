@@ -30,7 +30,11 @@ class VerifyCsrf extends VerifyCsrfToken
             'registration',
             'verification',
             'authentication',
-            'applogout'
+            'applogout',
+            'result',
+            'QuizQuestion',
+            'top',
+            'forgetpass'
         ];
 
         foreach ($routes as $route)

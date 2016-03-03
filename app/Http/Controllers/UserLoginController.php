@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\models\UserLoginModel;
 use App\Http\Requests;
+use Illuminate\Support\Facades\Crypt;
 use Illuminate\Support\Facades\Input;
 use Response;
 
@@ -19,7 +20,8 @@ class UserLoginController extends Controller
         $login_json = array();
         $registercheck = UserLoginModel::where('user_email', '=', $email)->exists();
         if ($registercheck) {
-            $pass = md5($password);
+            $pass = $password;
+
             $login = UserLoginModel::where('user_email', '=', $email)->where('password', '=', $pass)->exists();
 
             if ($login) {
@@ -52,6 +54,40 @@ class UserLoginController extends Controller
         if ($logout) {
             return Response::json(array('status' => 1));
         } else return Response::json(array('status' => 0));
+    }
+
+    public function forgetPass()
+    {
+        $emails = Input::get('email');
+        $email = $emails . "*manual";
+        $checkmail = UserLoginModel::where('user_email', '=', $email)->first();
+        if ($checkmail) {
+            $pass = $checkmail->password;
+            $mail = new \PHPMailer();
+            $mail->IsSMTP();
+            $mail->SMTPAuth = true;
+            $mail->Host = "smtp.gmail.com";
+            $mail->Port = 465;
+            $mail->Username = "shuvo11101010@gmail.com";
+            $mail->Password = "shuvo01937092169";
+            $mail->SMTPSecure = 'ssl';
+            $mail->SetFrom('shuvo11101010@gmail.com', 'Mobile a Muktijuddho');
+            $mail->Subject = "Mobile a muktijuddho pin";
+            $mail->Body = "Dear " . $checkmail->user_name . "," . "\n\n your password is" . $pass;
+
+            $address = $emails;
+            $mail->AddAddress($address, $checkmail->user_name);
+            try {
+                $mail->Send();
+                return Response::json(array('status' => 1, 'message' => null));
+            } catch (\Illuminate\Database\QueryException $e) {
+                return Response::json(array('status' => 0, 'message' => $e->getMessage()));
+            }
+
+        } else {
+            return Response::json(array('status' => 0, 'message' => 'email not found'));
+        }
+
     }
 
 

@@ -6,6 +6,7 @@ use App\models\UserRegistrationModel;
 use App\models\UserLoginModel;
 use App\Http\Requests;
 use Response;
+
 use Illuminate\Support\Facades\Input;
 
 class AppRegistrationController extends Controller
@@ -30,7 +31,6 @@ class AppRegistrationController extends Controller
             } else return "user not verified";
 
         } else {
-//check.....................................................................................
             if (strcasecmp($user_type, "manual") == 0) {
                 $generated_code = rand(50, 1000);
                 $starttime = new \DateTime();
@@ -53,8 +53,8 @@ class AppRegistrationController extends Controller
                 $insert->user_code = $generated_code;
                 try {
                     $insert->save();
-                    $this->MailTransfer($user_mail, $user_name, $generated_code);
-                    return "request for verify";
+                    if ($this->MailTransfer($user_mail, $user_name, $generated_code))
+                        return "request for verify";
                 } catch (\Illuminate\Database\QueryException $e) {
                     return $e->getMessage();
                 }
@@ -75,7 +75,7 @@ class AppRegistrationController extends Controller
                 } else return "fail registration complete via" . $user_type;
 
             }
-            return "";//-------------------------------------------error check
+            return "";
         }
     }
 
@@ -96,10 +96,10 @@ class AppRegistrationController extends Controller
         $address = $user_email;
         $mail->AddAddress($address, $user_name);
         if (!$mail->Send()) {
-            echo $mail->ErrorInfo;
-            return 0;
+            // echo $mail->ErrorInfo;
+            return false;
         } else {
-            return 1;
+            return true;
         }
     }
 

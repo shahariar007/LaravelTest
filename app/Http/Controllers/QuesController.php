@@ -4,7 +4,6 @@ namespace App\Http\Controllers;
 
 use App\models\SpecialDate;
 use App\models\UserLoginModel;
-use Request;
 use Response;
 use App\models\LocationAuthorizationModel;
 use App\models\Qmodel;
@@ -58,22 +57,28 @@ class QuesController extends Controller
 
     }
 
-    function AppQuestion($locationset)
+    function AppQuestion()
     {
-        //$locationset=Input::get('locid');
-        //return $locationset;
+        $locationset = Input::get('location');
         $alldata = Qmodel::where('location_id', 'LIKE', $locationset)->pluck('options');
-        return json_decode($alldata);
+        if ($alldata)
+            return Response::json(array('status' => 'success', 'data' => json_decode($alldata)));
+        else return Response::json(array('status' => 'fail', 'data' => null));
 
     }
 
     public function Authentication()
     {
+
         $user_id = Input::get('user_id');
-        UserLoginModel::where('id','=',$user_id)->exists();
+        $check = UserLoginModel::where('id', '=', $user_id)->exists();
+        if (!$check) {
+            return Response::json(array('status' => 'fail'));
+        }
         $location = Input::get('location');
         $nowDateod = Carbon::now('Asia/Dhaka');
         $nowDate = $nowDateod->toDateString();
+        $special_date_explode = explode("-", $nowDate);
         $postDateob = Carbon::now()->addWeeks(1);
         $postDate = $postDateob->toDateString();
 
@@ -88,7 +93,7 @@ class QuesController extends Controller
             } else
                 return Response::json(array('status' => 'fail'));
         } else {
-            $checkdate = SpecialDate::whereDate('date', '=', $nowDate)->where('location', '=', $location)->first();
+            $checkdate = SpecialDate::where('date', '=', $special_date_explode[2])->where('month', '=', $special_date_explode[1])->where('location', '=', $location)->first();
             $insert = new LocationAuthorizationModel();
             $insert->user_id = $user_id;
             $insert->location = $location;
@@ -107,7 +112,8 @@ class QuesController extends Controller
 
     public function specialdate($location, $nowDate, $user_id, $postDate)
     {
-        $specialdate = SpecialDate::where('location', '=', $location)->whereDate('date', '=', $nowDate)->first();
+        $special_date_explode = explode("-", $nowDate);
+        $specialdate = SpecialDate::where('location', '=', $location)->where('date', '=', $special_date_explode[2])->where('month', '=', $special_date_explode[1])->first();
 
         if ($specialdate) {
             $asd = LocationAuthorizationModel::where('user_id', '=', $user_id)->where('location', '=', $location)->update(array('quiz_play_date' => $nowDate, 'quiz_res_date' => $postDate, 'special_id_date' => $specialdate->id));
@@ -119,4 +125,5 @@ class QuesController extends Controller
         } else return false;
 
     }
+    
 }
