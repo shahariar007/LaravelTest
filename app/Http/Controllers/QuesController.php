@@ -125,5 +125,5 @@ class QuesController extends Controller
         } else return false;
 
     }
-    
+
 }
